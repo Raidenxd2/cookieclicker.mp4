@@ -45,6 +45,7 @@ public class Game : MonoBehaviour
     public GameObject pp;
     public SoundManager soundManager;
     public BGColor bGColor;
+    public MiniGameFarm miniGameFarm;
 
     //Audio
     public AudioSource[] sounds;
@@ -114,7 +115,7 @@ public class Game : MonoBehaviour
 
     public void SavePlayer()
     {
-        SaveSystem.SavePlayer(this);
+        SaveSystem.SavePlayer(this, miniGameFarm);
     }
 
     public void LoadPlayer()
@@ -138,6 +139,14 @@ public class Game : MonoBehaviour
         GrandmaPrice = data.GrandmaPrice;
         Farms = data.Farms;
         FarmPrice = data.FarmPrice;
+        miniGameFarm.Farm1_IsGrowing = data.Farm1_IsGrowing;
+        miniGameFarm.Farm2_IsGrowing = data.Farm2_IsGrowing;
+        miniGameFarm.Farm3_IsGrowing = data.Farm3_IsGrowing;
+        miniGameFarm.Farm4_IsGrowing = data.Farm4_IsGrowing;
+        miniGameFarm.Farm1_TimeRemaining = data.Farm1_TimeRemaining;
+        miniGameFarm.Farm2_TimeRemaining = data.Farm2_TimeRemaining;
+        miniGameFarm.Farm3_TimeRemaining = data.Farm3_TimeRemaining;
+        miniGameFarm.Farm4_TimeRemaining = data.Farm4_TimeRemaining;
     }
 
     public void ResetData()

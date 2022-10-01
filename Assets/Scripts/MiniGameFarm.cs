@@ -6,6 +6,7 @@ using TMPro;
 public class MiniGameFarm : MonoBehaviour
 {
 
+    //UI
     public TMP_Text Farm1_IsGrowingText;
     public TMP_Text Farm2_IsGrowingText;
     public TMP_Text Farm3_IsGrowingText;
@@ -15,16 +16,19 @@ public class MiniGameFarm : MonoBehaviour
     public TMP_Text Farm3_TimeRemainingText;
     public TMP_Text Farm4_TimeRemainingText;
 
+    //time remaining
     public int Farm1_TimeRemaining;
     public int Farm2_TimeRemaining;
     public int Farm3_TimeRemaining;
     public int Farm4_TimeRemaining;
 
+    //is growing
     public bool Farm1_IsGrowing;
     public bool Farm2_IsGrowing;
     public bool Farm3_IsGrowing;
     public bool Farm4_IsGrowing;
 
+    //scripts
     public Game game;
     public Notification notification;
 
