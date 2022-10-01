@@ -38,27 +38,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b77c5407dc277943b591ade9e6b18c5, type: 3}
   m_Name: LensDistortion
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
   intensity:
     overrideState: 1
-    value: -1
+    value: -11.97
   intensityX:
-    overrideState: 1
+    overrideState: 0
     value: 1
   intensityY:
     overrideState: 0
     value: 1
   centerX:
-    overrideState: 1
+    overrideState: 0
     value: -1
   centerY:
     overrideState: 0
     value: 0
   scale:
-    overrideState: 1
+    overrideState: 0
     value: 0.71
 --- !u!114 &11400000
 MonoBehaviour:
@@ -104,13 +104,13 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.496
+    value: 0.54
   smoothness:
     overrideState: 1
     value: 1
   roundness:
     overrideState: 1
-    value: 0.725
+    value: 0.73
   rounded:
     overrideState: 1
     value: 0
@@ -139,18 +139,18 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 6.98
+    value: 5.9
   threshold:
-    overrideState: 1
+    overrideState: 0
     value: 0.79
   softKnee:
-    overrideState: 1
+    overrideState: 0
     value: 0
   clamp:
-    overrideState: 1
+    overrideState: 0
     value: 65436.78
   diffusion:
-    overrideState: 1
+    overrideState: 0
     value: 4.86
   anamorphicRatio:
     overrideState: 0

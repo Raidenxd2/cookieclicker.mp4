@@ -3772,7 +3772,7 @@ GameObject:
   - component: {fileID: 286663512}
   m_Layer: 0
   m_Name: notification
-  m_TagString: Untagged
+  m_TagString: notification
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20839,6 +20839,7 @@ MonoBehaviour:
   pp: {fileID: 1777410292}
   soundManager: {fileID: 0}
   bGColor: {fileID: 791001578}
+  miniGameFarm: {fileID: 1212482933}
   sounds: []
   music:
   - {fileID: 8300000, guid: 7ded575e742039b43955af46e7fa5b5c, type: 3}
