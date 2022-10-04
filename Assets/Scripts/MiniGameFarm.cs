@@ -35,10 +35,10 @@ public class MiniGameFarm : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Farm1_TimeRemaining = 0;
-        Farm2_TimeRemaining = 0;
-        Farm3_TimeRemaining = 0;
-        Farm4_TimeRemaining = 0;
+        // Farm1_TimeRemaining = 0;
+        // Farm2_TimeRemaining = 0;
+        // Farm3_TimeRemaining = 0;
+        // Farm4_TimeRemaining = 0;
         StartCoroutine(FarmTick());
     }
 
