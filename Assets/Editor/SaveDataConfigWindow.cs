@@ -5,6 +5,7 @@ public class SaveDataConfigWindow : EditorWindow
 {
 
     private Game game;
+    private MiniGameFarm farm;
     double cookies;
     double CPC;
     double CPS;
@@ -16,6 +17,15 @@ public class SaveDataConfigWindow : EditorWindow
     double GrandmaPrice;
     double Farms;
     double FarmPrice;
+    bool Farm1Growing;
+    bool Farm2Growing;
+    bool Farm3Growing;
+    bool Farm4Growing;
+    int Farm1TimeRemaining;
+    int Farm2TimeRemaining;
+    int Farm3TimeRemaining;
+    int Farm4TimeRemaining;
+
 
     [MenuItem("Window/Save Data Editor")]
     public static void ShowWindow()
@@ -28,6 +38,7 @@ public class SaveDataConfigWindow : EditorWindow
         try
         {
             game = GameObject.FindGameObjectWithTag("main").GetComponent<Game>();
+            farm = GameObject.FindGameObjectWithTag("farm").GetComponent<MiniGameFarm>();
         }
         catch
         {
@@ -44,6 +55,15 @@ public class SaveDataConfigWindow : EditorWindow
         GrandmaPrice = EditorGUILayout.DoubleField("Grandma Price", GrandmaPrice);
         Farms = EditorGUILayout.DoubleField("Farms", Farms);
         FarmPrice = EditorGUILayout.DoubleField("Farm Price", FarmPrice);
+        Farm1Growing = EditorGUILayout.Toggle("Farm 1 Growing?", Farm1Growing);
+        Farm2Growing = EditorGUILayout.Toggle("Farm 2 Growing?", Farm2Growing);
+        Farm3Growing = EditorGUILayout.Toggle("Farm 3 Growing?", Farm3Growing);
+        Farm4Growing = EditorGUILayout.Toggle("Farm 4 Growing?", Farm4Growing);
+        Farm1TimeRemaining = EditorGUILayout.IntField("Farm 1 Time Remaining", Farm1TimeRemaining);
+        Farm2TimeRemaining = EditorGUILayout.IntField("Farm 2 Time Remaining", Farm2TimeRemaining);
+        Farm3TimeRemaining = EditorGUILayout.IntField("Farm 3 Time Remaining", Farm3TimeRemaining);
+        Farm4TimeRemaining = EditorGUILayout.IntField("Farm 4 Time Remaining", Farm4TimeRemaining);
+
 
         GUILayout.BeginHorizontal();
 
@@ -60,6 +80,14 @@ public class SaveDataConfigWindow : EditorWindow
             game.GrandmaPrice = GrandmaPrice;
             game.Farms = Farms;
             game.FarmPrice = FarmPrice;
+            farm.Farm1_IsGrowing = Farm1Growing;
+            farm.Farm2_IsGrowing = Farm2Growing;
+            farm.Farm3_IsGrowing = Farm3Growing;
+            farm.Farm4_IsGrowing = Farm4Growing;
+            farm.Farm1_TimeRemaining = Farm1TimeRemaining;
+            farm.Farm2_TimeRemaining = Farm2TimeRemaining;
+            farm.Farm3_TimeRemaining = Farm3TimeRemaining;
+            farm.Farm4_TimeRemaining = Farm4TimeRemaining;
             game.SavePlayer();
         }
         if (GUILayout.Button("Load Data"))
@@ -76,6 +104,14 @@ public class SaveDataConfigWindow : EditorWindow
             GrandmaPrice = game.GrandmaPrice;
             Farms = game.Farms;
             FarmPrice = game.FarmPrice;
+            Farm1Growing = farm.Farm1_IsGrowing;
+            Farm2Growing = farm.Farm2_IsGrowing;
+            Farm3Growing = farm.Farm3_IsGrowing;
+            Farm4Growing = farm.Farm4_IsGrowing;
+            Farm1TimeRemaining = farm.Farm1_TimeRemaining;
+            Farm2TimeRemaining = farm.Farm2_TimeRemaining;
+            Farm3TimeRemaining = farm.Farm3_TimeRemaining;
+            Farm4TimeRemaining = farm.Farm4_TimeRemaining;
         }
         if  (GUILayout.Button("Reset Data"))
         {
