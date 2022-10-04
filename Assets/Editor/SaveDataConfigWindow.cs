@@ -25,7 +25,14 @@ public class SaveDataConfigWindow : EditorWindow
 
     void OnGUI()
     {
-        game = GameObject.FindGameObjectWithTag("main").GetComponent<Game>();
+        try
+        {
+            game = GameObject.FindGameObjectWithTag("main").GetComponent<Game>();
+        }
+        catch
+        {
+            GUILayout.Label("Must be in the game scene!");
+        }
         cookies = EditorGUILayout.DoubleField("Cookies", cookies);
         CPS = EditorGUILayout.DoubleField("Cookies Per Second", CPS);
         CPC = EditorGUILayout.DoubleField("Cookies Per Click", CPC);

@@ -16,7 +16,14 @@ public class NotificationTestWindow : EditorWindow
 
     void OnGUI()
     {
-        notification = GameObject.FindGameObjectWithTag("notification").GetComponent<Notification>();
+        try
+        {
+            notification = GameObject.FindGameObjectWithTag("notification").GetComponent<Notification>();
+        }
+        catch
+        {
+            GUILayout.Label("Must be in the game scene!");
+        }
         message = EditorGUILayout.TextField("Message", message);
         Title = EditorGUILayout.TextField("Title", Title);
         if (GUILayout.Button("Test Notification"))
