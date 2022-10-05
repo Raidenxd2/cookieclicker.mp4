@@ -147,6 +147,10 @@ public class Game : MonoBehaviour
         miniGameFarm.Farm2_TimeRemaining = data.Farm2_TimeRemaining;
         miniGameFarm.Farm3_TimeRemaining = data.Farm3_TimeRemaining;
         miniGameFarm.Farm4_TimeRemaining = data.Farm4_TimeRemaining;
+        miniGameFarm.Farm1_Type = data.Farm1_Type;
+        miniGameFarm.Farm2_Type = data.Farm2_Type;
+        miniGameFarm.Farm3_Type = data.Farm3_Type;
+        miniGameFarm.Farm4_Type = data.Farm4_Type;
     }
 
     public void ResetData()
@@ -162,6 +166,18 @@ public class Game : MonoBehaviour
         Grandmas = 0;
         Farms = 0;
         FarmPrice = 300;
+        miniGameFarm.Farm1_IsGrowing = false;
+        miniGameFarm.Farm2_IsGrowing = false;
+        miniGameFarm.Farm3_IsGrowing = false;
+        miniGameFarm.Farm4_IsGrowing = false;
+        miniGameFarm.Farm1_TimeRemaining = 0;
+        miniGameFarm.Farm2_TimeRemaining = 0;
+        miniGameFarm.Farm3_TimeRemaining = 0;
+        miniGameFarm.Farm4_TimeRemaining = 0;
+        miniGameFarm.Farm1_Type = "";
+        miniGameFarm.Farm2_Type = "";
+        miniGameFarm.Farm3_Type = "";
+        miniGameFarm.Farm4_Type = "";
         SavePlayer();
     }
 
