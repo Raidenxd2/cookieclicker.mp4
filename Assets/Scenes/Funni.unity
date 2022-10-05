@@ -624,8 +624,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 96.77, y: -123.37189}
-  m_SizeDelta: {x: 193.54, y: 77.20125}
+  m_AnchoredPosition: {x: 96.77, y: -214.23726}
+  m_SizeDelta: {x: 193.54, y: 137.77817}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &66322134
 MonoBehaviour:
@@ -2943,7 +2943,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32.15
+  m_fontSize: 38.25
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6289,8 +6289,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 96.765625, y: -36.16797}
-  m_SizeDelta: {x: 193.54, y: -72.335}
+  m_AnchoredPosition: {x: 85.201, y: -36.16797}
+  m_SizeDelta: {x: 92.977, y: -72.335}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &446147900
 Animator:
@@ -9367,7 +9367,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -23.580002, y: -18.851562}
+  m_AnchoredPosition: {x: -23.580078, y: -18.851562}
   m_SizeDelta: {x: 46.690002, y: 37.339996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &647742994
@@ -11257,7 +11257,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32.15
+  m_fontSize: 47.5
   m_fontSizeBase: 22.33
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -16286,6 +16286,13 @@ MonoBehaviour:
   Farm2_TimeRemainingText: {fileID: 1432695892}
   Farm3_TimeRemainingText: {fileID: 1094361820}
   Farm4_TimeRemainingText: {fileID: 1950719180}
+  Farm1_TypeText: {fileID: 0}
+  Farm2_TypeText: {fileID: 0}
+  Farm3_TypeText: {fileID: 0}
+  Farm4_TypeText: {fileID: 0}
+  SelectedTypeText: {fileID: 0}
+  WhiteCarrotsTypeBTN: {fileID: 0}
+  WhiteCarrotsShopBTN: {fileID: 0}
   Farm1_TimeRemaining: 0
   Farm2_TimeRemaining: 0
   Farm3_TimeRemaining: 0
@@ -16294,6 +16301,12 @@ MonoBehaviour:
   Farm2_IsGrowing: 0
   Farm3_IsGrowing: 0
   Farm4_IsGrowing: 0
+  Type: 0
+  Farm1_Type: 
+  Farm2_Type: 
+  Farm3_Type: 
+  Farm4_Type: 
+  WhiteCarrots: 0
   game: {fileID: 1599429561}
   notification: {fileID: 286663512}
 --- !u!1 &1216779978
@@ -18128,7 +18141,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32.15
+  m_fontSize: 36.8
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -18434,8 +18447,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 96.77, y: -38.600616}
-  m_SizeDelta: {x: 193.54, y: 77.20125}
+  m_AnchoredPosition: {x: 96.77, y: -68.889084}
+  m_SizeDelta: {x: 193.54, y: 137.77817}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1424059487
 MonoBehaviour:
@@ -20702,6 +20715,7 @@ MonoBehaviour:
   pp: {fileID: 0}
   soundManager: {fileID: 0}
   bGColor: {fileID: 0}
+  miniGameFarm: {fileID: 0}
   sounds: []
   music:
   - {fileID: 8300000, guid: 7ded575e742039b43955af46e7fa5b5c, type: 3}
@@ -22616,8 +22630,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 96.77, y: -208.14313}
-  m_SizeDelta: {x: 193.54, y: 77.20125}
+  m_AnchoredPosition: {x: 96.77, y: -359.58545}
+  m_SizeDelta: {x: 193.54, y: 137.77817}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1736815746
 MonoBehaviour:
@@ -26218,8 +26232,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 96.77, y: -292.91437}
-  m_SizeDelta: {x: 193.54, y: 77.20125}
+  m_AnchoredPosition: {x: 96.77, y: -504.9336}
+  m_SizeDelta: {x: 193.54, y: 137.77817}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1985674356
 MonoBehaviour:
@@ -27058,7 +27072,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
+  m_fontSize: 38.25
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
