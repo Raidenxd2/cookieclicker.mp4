@@ -20,6 +20,8 @@ public class MiniGameFarm : MonoBehaviour
     public TMP_Text Farm3_TypeText;
     public TMP_Text Farm4_TypeText;
     public TMP_Text SelectedTypeText;
+    public GameObject WhiteCarrotsTypeBTN;
+    public GameObject WhiteCarrotsShopBTN;
 
     //time remaining
     public int Farm1_TimeRemaining;
@@ -39,6 +41,7 @@ public class MiniGameFarm : MonoBehaviour
     public string Farm2_Type;
     public string Farm3_Type;
     public string Farm4_Type;
+    public bool WhiteCarrots;
 
     //scripts
     public Game game;
@@ -196,6 +199,15 @@ public class MiniGameFarm : MonoBehaviour
         SelectedTypeText.text = "Currently Selected: White Carrots";
     }
 
+    public void BuyWhiteCarrots()
+    {
+        if (game.Cookies >= 800 && WhiteCarrots == false)
+        {
+            WhiteCarrots = true;
+            game.Cookies -= 800;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -211,6 +223,8 @@ public class MiniGameFarm : MonoBehaviour
         Farm2_TypeText.text = "Type: " + Farm2_Type;
         Farm3_TypeText.text = "Type: " + Farm3_Type;
         Farm4_TypeText.text = "Type: " + Farm4_Type;
+        WhiteCarrotsShopBTN.SetActive(!WhiteCarrots);
+        WhiteCarrotsTypeBTN.SetActive(WhiteCarrots);
         if (Farm1_TimeRemaining < 0)
         {
             Farm1_TimeRemaining = 0;

@@ -151,6 +151,7 @@ public class Game : MonoBehaviour
         miniGameFarm.Farm2_Type = data.Farm2_Type;
         miniGameFarm.Farm3_Type = data.Farm3_Type;
         miniGameFarm.Farm4_Type = data.Farm4_Type;
+        miniGameFarm.WhiteCarrots = data.WhiteCarrots;
     }
 
     public void ResetData()
@@ -178,6 +179,7 @@ public class Game : MonoBehaviour
         miniGameFarm.Farm2_Type = "";
         miniGameFarm.Farm3_Type = "";
         miniGameFarm.Farm4_Type = "";
+        miniGameFarm.WhiteCarrots = false;
         SavePlayer();
     }
 
