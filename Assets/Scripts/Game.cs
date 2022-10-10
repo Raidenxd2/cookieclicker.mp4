@@ -22,6 +22,7 @@ public class Game : MonoBehaviour
     public bool PostProcessing;
     public bool Music;
     public bool Sound;
+    public bool Fullscreen;
 
     //text
     public TMP_Text CookieCounter;
@@ -70,6 +71,7 @@ public class Game : MonoBehaviour
             PostProcessing = true;
             Music = true;
             Sound = true;
+            Fullscreen = true;
             ResetData();
         }
         if (GrandmaPrice <= 125)
@@ -111,6 +113,11 @@ public class Game : MonoBehaviour
     public void SoundToggle()
     {
         Sound = !Sound;
+    }
+
+    public void FullscreenToggle()
+    {
+        Fullscreen = !Fullscreen;
     }
 
     public void SavePlayer()
@@ -282,6 +289,7 @@ public class Game : MonoBehaviour
         sounds[0].enabled = Sound;
         sounds[1].enabled = Music;
         pp.SetActive(PostProcessing);
+        Screen.fullScreen = Fullscreen;
         
         if (Farms >= 1)
         {

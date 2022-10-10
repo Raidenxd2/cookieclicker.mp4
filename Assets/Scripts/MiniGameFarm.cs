@@ -22,6 +22,7 @@ public class MiniGameFarm : MonoBehaviour
     public TMP_Text SelectedTypeText;
     public GameObject WhiteCarrotsTypeBTN;
     public GameObject WhiteCarrotsShopBTN;
+    public GameObject NECDialog;
 
     //time remaining
     public int Farm1_TimeRemaining;
@@ -205,6 +206,10 @@ public class MiniGameFarm : MonoBehaviour
         {
             WhiteCarrots = true;
             game.Cookies -= 800;
+        }
+        else
+        {
+            NECDialog.SetActive(true);
         }
     }
 
