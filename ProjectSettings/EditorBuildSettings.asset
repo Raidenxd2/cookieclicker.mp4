@@ -14,7 +14,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/reload.unity
     guid: c494db3cfa5837048bafb3bc015fca0b
-  - enabled: 1
-    path: Assets/Scenes/Tutorial.unity
-    guid: 808d8df98409ea1489bbc03484fcebf8
   m_configObjects: {}

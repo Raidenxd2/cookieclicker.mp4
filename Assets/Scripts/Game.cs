@@ -41,6 +41,8 @@ public class Game : MonoBehaviour
     //UI
     public GameObject NotEnoughCookiesDialog;
     public GameObject MiniGames_FarmBTN;
+    public GameObject FullScreenToggleUI;
+    public GameObject TutorialScreen;
 
     //other
     public GameObject pp;
@@ -66,6 +68,7 @@ public class Game : MonoBehaviour
         sounds = GameObject.FindGameObjectWithTag("sound").GetComponents<AudioSource>();
         if (HasJoined == false)
         {
+            TutorialScreen.SetActive(true);
             SavePlayer();
             HasJoined = true;
             PostProcessing = true;
@@ -81,6 +84,14 @@ public class Game : MonoBehaviour
         if (FarmPrice <= 300)
         {
             FarmPrice = 300;
+        }
+        if (Application.isMobilePlatform == true)
+        {
+            FullScreenToggleUI.SetActive(false);
+        }
+        else
+        {
+            FullScreenToggleUI.SetActive(true);
         }
         StartCoroutine(AutoSave());
         StartCoroutine(Tick());
@@ -118,6 +129,14 @@ public class Game : MonoBehaviour
     public void FullscreenToggle()
     {
         Fullscreen = !Fullscreen;
+        if (Fullscreen == true)
+        {
+            Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, FullScreenMode.FullScreenWindow, Screen.currentResolution.refreshRate);
+        }
+        if (Fullscreen == false)
+        {
+            Screen.SetResolution(800, 600, FullScreenMode.Windowed, Screen.currentResolution.refreshRate);
+        }
     }
 
     public void SavePlayer()
@@ -159,6 +178,7 @@ public class Game : MonoBehaviour
         miniGameFarm.Farm3_Type = data.Farm3_Type;
         miniGameFarm.Farm4_Type = data.Farm4_Type;
         miniGameFarm.WhiteCarrots = data.WhiteCarrots;
+        Fullscreen = data.Fullscreen;
     }
 
     public void ResetData()
