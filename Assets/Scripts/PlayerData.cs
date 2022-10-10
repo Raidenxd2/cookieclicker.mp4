@@ -18,6 +18,7 @@ public class PlayerData
     public bool PostProcessing;
     public bool Music;
     public bool Sound;
+    public bool Fullscreen;
 
     //farm
     public bool Farm1_IsGrowing;
@@ -64,5 +65,6 @@ public class PlayerData
         Farm3_Type = fa.Farm3_Type;
         Farm4_Type = fa.Farm4_Type;
         WhiteCarrots = fa.WhiteCarrots;
+        Fullscreen = ga.Fullscreen;
     }
 }
