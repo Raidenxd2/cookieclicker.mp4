@@ -22,6 +22,8 @@ public class Game : MonoBehaviour
     public bool PostProcessing;
     public bool Music;
     public bool Sound;
+    public bool Fullscreen;
+    public bool Particles;
 
     //text
     public TMP_Text CookieCounter;
@@ -40,12 +42,17 @@ public class Game : MonoBehaviour
     //UI
     public GameObject NotEnoughCookiesDialog;
     public GameObject MiniGames_FarmBTN;
+    public GameObject FullScreenToggleUI;
+    public GameObject TutorialScreen;
 
     //other
     public GameObject pp;
     public SoundManager soundManager;
     public BGColor bGColor;
     public MiniGameFarm miniGameFarm;
+    public GameObject CookieVFX;
+    public Transform CookieVFXPos;
+    public GameObject VFX;
 
     //Audio
     public AudioSource[] sounds;
@@ -65,11 +72,14 @@ public class Game : MonoBehaviour
         sounds = GameObject.FindGameObjectWithTag("sound").GetComponents<AudioSource>();
         if (HasJoined == false)
         {
+            TutorialScreen.SetActive(true);
             SavePlayer();
             HasJoined = true;
             PostProcessing = true;
             Music = true;
             Sound = true;
+            Fullscreen = true;
+            Particles = true;
             ResetData();
         }
         if (GrandmaPrice <= 125)
@@ -79,6 +89,14 @@ public class Game : MonoBehaviour
         if (FarmPrice <= 300)
         {
             FarmPrice = 300;
+        }
+        if (Application.isMobilePlatform == true)
+        {
+            FullScreenToggleUI.SetActive(false);
+        }
+        else
+        {
+            FullScreenToggleUI.SetActive(true);
         }
         StartCoroutine(AutoSave());
         StartCoroutine(Tick());
@@ -111,6 +129,24 @@ public class Game : MonoBehaviour
     public void SoundToggle()
     {
         Sound = !Sound;
+    }
+
+    public void FullscreenToggle()
+    {
+        Fullscreen = !Fullscreen;
+        if (Fullscreen == true)
+        {
+            Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, FullScreenMode.FullScreenWindow, Screen.currentResolution.refreshRate);
+        }
+        if (Fullscreen == false)
+        {
+            Screen.SetResolution(800, 600, FullScreenMode.Windowed, Screen.currentResolution.refreshRate);
+        }
+    }
+
+    public void ParticlesToggle()
+    {
+        Particles = !Particles;
     }
 
     public void SavePlayer()
@@ -147,6 +183,13 @@ public class Game : MonoBehaviour
         miniGameFarm.Farm2_TimeRemaining = data.Farm2_TimeRemaining;
         miniGameFarm.Farm3_TimeRemaining = data.Farm3_TimeRemaining;
         miniGameFarm.Farm4_TimeRemaining = data.Farm4_TimeRemaining;
+        miniGameFarm.Farm1_Type = data.Farm1_Type;
+        miniGameFarm.Farm2_Type = data.Farm2_Type;
+        miniGameFarm.Farm3_Type = data.Farm3_Type;
+        miniGameFarm.Farm4_Type = data.Farm4_Type;
+        miniGameFarm.WhiteCarrots = data.WhiteCarrots;
+        Fullscreen = data.Fullscreen;
+        Particles = data.Particles;
     }
 
     public void ResetData()
@@ -162,12 +205,26 @@ public class Game : MonoBehaviour
         Grandmas = 0;
         Farms = 0;
         FarmPrice = 300;
+        miniGameFarm.Farm1_IsGrowing = false;
+        miniGameFarm.Farm2_IsGrowing = false;
+        miniGameFarm.Farm3_IsGrowing = false;
+        miniGameFarm.Farm4_IsGrowing = false;
+        miniGameFarm.Farm1_TimeRemaining = 0;
+        miniGameFarm.Farm2_TimeRemaining = 0;
+        miniGameFarm.Farm3_TimeRemaining = 0;
+        miniGameFarm.Farm4_TimeRemaining = 0;
+        miniGameFarm.Farm1_Type = "";
+        miniGameFarm.Farm2_Type = "";
+        miniGameFarm.Farm3_Type = "";
+        miniGameFarm.Farm4_Type = "";
+        miniGameFarm.WhiteCarrots = false;
         SavePlayer();
     }
 
     public void bakeCookie()
     {
         Cookies += CPC;
+        Instantiate(CookieVFX, CookieVFXPos);
     }
 
     public void BuyAutoClicker()
@@ -264,6 +321,8 @@ public class Game : MonoBehaviour
         sounds[0].enabled = Sound;
         sounds[1].enabled = Music;
         pp.SetActive(PostProcessing);
+        Screen.fullScreen = Fullscreen;
+        VFX.SetActive(Particles);
         
         if (Farms >= 1)
         {

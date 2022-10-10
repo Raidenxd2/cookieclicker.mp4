@@ -18,6 +18,7 @@ public class PlayerData
     public bool PostProcessing;
     public bool Music;
     public bool Sound;
+    public bool Fullscreen;
 
     //farm
     public bool Farm1_IsGrowing;
@@ -28,6 +29,12 @@ public class PlayerData
     public int Farm2_TimeRemaining;
     public int Farm3_TimeRemaining;
     public int Farm4_TimeRemaining;
+    public string Farm1_Type;
+    public string Farm2_Type;
+    public string Farm3_Type;
+    public string Farm4_Type;
+    public bool WhiteCarrots;
+    public bool Particles;
 
     public PlayerData (Game ga, MiniGameFarm fa)
     {
@@ -54,5 +61,12 @@ public class PlayerData
         Farm2_TimeRemaining = fa.Farm2_TimeRemaining;
         Farm3_TimeRemaining = fa.Farm3_TimeRemaining;
         Farm4_TimeRemaining = fa.Farm4_TimeRemaining;
+        Farm1_Type = fa.Farm1_Type;
+        Farm2_Type = fa.Farm2_Type;
+        Farm3_Type = fa.Farm3_Type;
+        Farm4_Type = fa.Farm4_Type;
+        WhiteCarrots = fa.WhiteCarrots;
+        Fullscreen = ga.Fullscreen;
+        Particles = ga.Particles;
     }
 }
