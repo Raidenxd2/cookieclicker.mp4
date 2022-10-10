@@ -23,6 +23,7 @@ public class Game : MonoBehaviour
     public bool Music;
     public bool Sound;
     public bool Fullscreen;
+    public bool Particles;
 
     //text
     public TMP_Text CookieCounter;
@@ -49,6 +50,9 @@ public class Game : MonoBehaviour
     public SoundManager soundManager;
     public BGColor bGColor;
     public MiniGameFarm miniGameFarm;
+    public GameObject CookieVFX;
+    public Transform CookieVFXPos;
+    public GameObject VFX;
 
     //Audio
     public AudioSource[] sounds;
@@ -75,6 +79,7 @@ public class Game : MonoBehaviour
             Music = true;
             Sound = true;
             Fullscreen = true;
+            Particles = true;
             ResetData();
         }
         if (GrandmaPrice <= 125)
@@ -139,6 +144,11 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void ParticlesToggle()
+    {
+        Particles = !Particles;
+    }
+
     public void SavePlayer()
     {
         SaveSystem.SavePlayer(this, miniGameFarm);
@@ -179,6 +189,7 @@ public class Game : MonoBehaviour
         miniGameFarm.Farm4_Type = data.Farm4_Type;
         miniGameFarm.WhiteCarrots = data.WhiteCarrots;
         Fullscreen = data.Fullscreen;
+        Particles = data.Particles;
     }
 
     public void ResetData()
@@ -213,6 +224,7 @@ public class Game : MonoBehaviour
     public void bakeCookie()
     {
         Cookies += CPC;
+        Instantiate(CookieVFX, CookieVFXPos);
     }
 
     public void BuyAutoClicker()
@@ -310,6 +322,7 @@ public class Game : MonoBehaviour
         sounds[1].enabled = Music;
         pp.SetActive(PostProcessing);
         Screen.fullScreen = Fullscreen;
+        VFX.SetActive(Particles);
         
         if (Farms >= 1)
         {

@@ -34,6 +34,7 @@ public class PlayerData
     public string Farm3_Type;
     public string Farm4_Type;
     public bool WhiteCarrots;
+    public bool Particles;
 
     public PlayerData (Game ga, MiniGameFarm fa)
     {
@@ -66,5 +67,6 @@ public class PlayerData
         Farm4_Type = fa.Farm4_Type;
         WhiteCarrots = fa.WhiteCarrots;
         Fullscreen = ga.Fullscreen;
+        Particles = ga.Particles;
     }
 }
