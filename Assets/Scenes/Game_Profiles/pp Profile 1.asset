@@ -1,31 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8324262419789303311
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6050e2d5de785ce4d931e4dbdbf2d755, type: 3}
-  m_Name: ChromaticAberration
-  m_EditorClassIdentifier: 
-  active: 0
-  enabled:
-    overrideState: 1
-    value: 1
-  spectralLut:
-    overrideState: 0
-    value: {fileID: 0}
-    defaultState: 1
-  intensity:
-    overrideState: 1
-    value: 1
-  fastMode:
-    overrideState: 0
-    value: 0
 --- !u!114 &-6785663654698495512
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -76,7 +50,6 @@ MonoBehaviour:
   - {fileID: 3653403923968031510}
   - {fileID: 4617734827380488938}
   - {fileID: -6785663654698495512}
-  - {fileID: -8324262419789303311}
 --- !u!114 &3653403923968031510
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -97,20 +70,20 @@ MonoBehaviour:
     overrideState: 0
     value: 0
   color:
-    overrideState: 0
-    value: {r: 0, g: 0, b: 0, a: 1}
+    overrideState: 1
+    value: {r: 0, g: 0.030677538, b: 0.066037714, a: 1}
   center:
     overrideState: 0
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.54
+    value: 0.57
   smoothness:
     overrideState: 1
     value: 1
   roundness:
     overrideState: 1
-    value: 0.73
+    value: 0.65
   rounded:
     overrideState: 1
     value: 0
