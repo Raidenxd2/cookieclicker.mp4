@@ -8,14 +8,14 @@ public static class SaveSystem
     
 
 
-    public static void SavePlayer (Game ga, MiniGameFarm fa)
+    public static void SavePlayer (Game ga, MiniGameFarm fa, Rebirth re)
     {
         BinaryFormatter formatter = new BinaryFormatter();
 
         string path = Application.persistentDataPath + "/cookie";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        PlayerData data = new PlayerData(ga, fa);
+        PlayerData data = new PlayerData(ga, fa, re);
 
         formatter.Serialize(stream, data);
         stream.Close();

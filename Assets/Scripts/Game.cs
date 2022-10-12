@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.PostProcessing;
 
 public class Game : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class Game : MonoBehaviour
     public TMP_Text Stats_CPS;
     public TMP_Text Stats_CPC;
     public TMP_Text Stats_Farms;
+    public TMP_Text Stats_Rebirths;
 
     //UI
     public GameObject NotEnoughCookiesDialog;
@@ -53,6 +55,7 @@ public class Game : MonoBehaviour
     public GameObject CookieVFX;
     public Transform CookieVFXPos;
     public GameObject VFX;
+    public Rebirth rebirth;
 
     //Audio
     public AudioSource[] sounds;
@@ -112,7 +115,7 @@ public class Game : MonoBehaviour
     IEnumerator Tick()
     {
         yield return new WaitForSeconds(1);
-        Cookies += CPS;
+        Cookies += CPS * rebirth.Rebirths;
         StartCoroutine(Tick());
     }
 
@@ -151,7 +154,7 @@ public class Game : MonoBehaviour
 
     public void SavePlayer()
     {
-        SaveSystem.SavePlayer(this, miniGameFarm);
+        SaveSystem.SavePlayer(this, miniGameFarm, rebirth);
     }
 
     public void LoadPlayer()
@@ -190,6 +193,9 @@ public class Game : MonoBehaviour
         miniGameFarm.WhiteCarrots = data.WhiteCarrots;
         Fullscreen = data.Fullscreen;
         Particles = data.Particles;
+        rebirth.Rebirths = data.Rebirths;
+        rebirth.RebirthCookies = data.RebirthCookies;
+        rebirth.RebirthGrandmas = data.RebirthGrandmas;
     }
 
     public void ResetData()
@@ -218,12 +224,15 @@ public class Game : MonoBehaviour
         miniGameFarm.Farm3_Type = "";
         miniGameFarm.Farm4_Type = "";
         miniGameFarm.WhiteCarrots = false;
+        rebirth.Rebirths = 1;
+        rebirth.RebirthCookies = 1000000;
+        rebirth.RebirthGrandmas = 10;
         SavePlayer();
     }
 
     public void bakeCookie()
     {
-        Cookies += CPC;
+        Cookies += CPC * rebirth.Rebirths;
         Instantiate(CookieVFX, CookieVFXPos);
     }
 
@@ -318,6 +327,7 @@ public class Game : MonoBehaviour
         Stats_CPC.text = CPC.ToString("Total Cookies Per Click: " + "0");
         Stats_CPS.text = CPS.ToString("Total Cookies Per Second: " + "0");
         Stats_Farms.text = Farms.ToString("Farms: " + "0");
+        Stats_Rebirths.text = rebirth.Rebirths.ToString("Rebirths: " + "0");
         sounds[0].enabled = Sound;
         sounds[1].enabled = Music;
         pp.SetActive(PostProcessing);
