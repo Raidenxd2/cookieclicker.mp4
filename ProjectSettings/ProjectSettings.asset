@@ -50,7 +50,7 @@ PlayerSettings:
   m_ActiveColorSpace: 0
   m_MTRendering: 1
   mipStripping: 1
-  numberOfMipsStripped: 0
+  numberOfMipsStripped: 3
   m_StackTraceTypes: 010000000100000001000000010000000100000001000000
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
@@ -143,6 +143,7 @@ PlayerSettings:
   - {fileID: 8300000, guid: e79139cb7b147cb4e9d73f99c88b890c, type: 3}
   - {fileID: 8300000, guid: 9f7a032adbfd10746a0a6cf1583a8907, type: 3}
   - {fileID: 8300000, guid: 502c9833dbe774e4d833e43d22d526d4, type: 3}
+  - {fileID: 8300000, guid: 9f741f8f75d460a44bf205db8fc4792b, type: 3}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1

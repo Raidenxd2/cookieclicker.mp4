@@ -35,8 +35,11 @@ public class PlayerData
     public string Farm4_Type;
     public bool WhiteCarrots;
     public bool Particles;
+    public double RebirthCookies;
+    public double RebirthGrandmas;
+    public double Rebirths;
 
-    public PlayerData (Game ga, MiniGameFarm fa)
+    public PlayerData (Game ga, MiniGameFarm fa, Rebirth re)
     {
         Cookies = ga.Cookies;
         CPC = ga.CPC;
@@ -68,5 +71,8 @@ public class PlayerData
         WhiteCarrots = fa.WhiteCarrots;
         Fullscreen = ga.Fullscreen;
         Particles = ga.Particles;
+        RebirthCookies = re.RebirthCookies;
+        RebirthGrandmas = re.RebirthGrandmas;
+        Rebirths = re.Rebirths;
     }
 }
