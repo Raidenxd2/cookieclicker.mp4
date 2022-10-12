@@ -56,6 +56,7 @@ public class Game : MonoBehaviour
     public Transform CookieVFXPos;
     public GameObject VFX;
     public Rebirth rebirth;
+    public Update update;
 
     //Audio
     public AudioSource[] sounds;
@@ -103,6 +104,7 @@ public class Game : MonoBehaviour
         }
         StartCoroutine(AutoSave());
         StartCoroutine(Tick());
+        update.CheckForUpdatesGet();
     }
 
     IEnumerator AutoSave()
