@@ -50,7 +50,7 @@ PlayerSettings:
   m_ActiveColorSpace: 0
   m_MTRendering: 1
   mipStripping: 1
-  numberOfMipsStripped: 3
+  numberOfMipsStripped: 0
   m_StackTraceTypes: 010000000100000001000000010000000100000001000000
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
@@ -134,7 +134,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 7
+  bundleVersion: 8
   preloadedAssets:
   - {fileID: 8300000, guid: 7ded575e742039b43955af46e7fa5b5c, type: 3}
   - {fileID: 8300000, guid: 7e0a1ccf0ce478e4fa1e68f59153091a, type: 3}
@@ -144,6 +144,7 @@ PlayerSettings:
   - {fileID: 8300000, guid: 9f7a032adbfd10746a0a6cf1583a8907, type: 3}
   - {fileID: 8300000, guid: 502c9833dbe774e4d833e43d22d526d4, type: 3}
   - {fileID: 8300000, guid: 9f741f8f75d460a44bf205db8fc4792b, type: 3}
+  - {fileID: 8300000, guid: 70b76e2a434ff464ba04256e2c29e73b, type: 3}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1

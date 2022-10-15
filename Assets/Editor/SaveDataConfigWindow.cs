@@ -6,6 +6,7 @@ public class SaveDataConfigWindow : EditorWindow
 
     private Game game;
     private MiniGameFarm farm;
+    private Rebirth rebirth;
     double cookies;
     double CPC;
     double CPS;
@@ -25,6 +26,9 @@ public class SaveDataConfigWindow : EditorWindow
     int Farm2TimeRemaining;
     int Farm3TimeRemaining;
     int Farm4TimeRemaining;
+    double Mines;
+    double MinePrice;
+    double Rebirths;
 
 
     [MenuItem("Window/Save Data Editor")]
@@ -39,6 +43,7 @@ public class SaveDataConfigWindow : EditorWindow
         {
             game = GameObject.FindGameObjectWithTag("main").GetComponent<Game>();
             farm = GameObject.FindGameObjectWithTag("farm").GetComponent<MiniGameFarm>();
+            rebirth = GameObject.FindGameObjectWithTag("rebirth").GetComponent<Rebirth>();
         }
         catch
         {
@@ -63,6 +68,9 @@ public class SaveDataConfigWindow : EditorWindow
         Farm2TimeRemaining = EditorGUILayout.IntField("Farm 2 Time Remaining", Farm2TimeRemaining);
         Farm3TimeRemaining = EditorGUILayout.IntField("Farm 3 Time Remaining", Farm3TimeRemaining);
         Farm4TimeRemaining = EditorGUILayout.IntField("Farm 4 Time Remaining", Farm4TimeRemaining);
+        Rebirths = EditorGUILayout.DoubleField("Rebirths", Rebirths);
+        Mines = EditorGUILayout.DoubleField("Mines", Mines);
+        MinePrice = EditorGUILayout.DoubleField("Mine Price", MinePrice);
 
 
         GUILayout.BeginHorizontal();
@@ -88,6 +96,9 @@ public class SaveDataConfigWindow : EditorWindow
             farm.Farm2_TimeRemaining = Farm2TimeRemaining;
             farm.Farm3_TimeRemaining = Farm3TimeRemaining;
             farm.Farm4_TimeRemaining = Farm4TimeRemaining;
+            rebirth.Rebirths = Rebirths;
+            game.Mines = Mines;
+            game.MinePrice = MinePrice;
             game.SavePlayer();
         }
         if (GUILayout.Button("Load Data"))
@@ -112,6 +123,9 @@ public class SaveDataConfigWindow : EditorWindow
             Farm2TimeRemaining = farm.Farm2_TimeRemaining;
             Farm3TimeRemaining = farm.Farm3_TimeRemaining;
             Farm4TimeRemaining = farm.Farm4_TimeRemaining;
+            Mines = game.Mines;
+            MinePrice = game.MinePrice;
+            Rebirths = rebirth.Rebirths;
         }
         if  (GUILayout.Button("Reset Data"))
         {

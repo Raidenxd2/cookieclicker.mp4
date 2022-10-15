@@ -19,6 +19,7 @@ public class PlayerData
     public bool Music;
     public bool Sound;
     public bool Fullscreen;
+    public double TimePlayed;
 
     //farm
     public bool Farm1_IsGrowing;
@@ -38,6 +39,8 @@ public class PlayerData
     public double RebirthCookies;
     public double RebirthGrandmas;
     public double Rebirths;
+    public double Mines;
+    public double MinePrice;
 
     public PlayerData (Game ga, MiniGameFarm fa, Rebirth re)
     {
@@ -74,5 +77,8 @@ public class PlayerData
         RebirthCookies = re.RebirthCookies;
         RebirthGrandmas = re.RebirthGrandmas;
         Rebirths = re.Rebirths;
+        Mines = ga.Mines;
+        MinePrice = ga.MinePrice;
+        TimePlayed = ga.TimePlayed;
     }
 }

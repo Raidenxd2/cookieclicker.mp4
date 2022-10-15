@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using TMPro;
 
 public class Update : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Update : MonoBehaviour
     string newVersion;
     public string currentVersion;
     public GameObject UpdateScreen;
+    public TMP_Text responseText;
 
     public void GotoDownload()
     {
@@ -52,6 +54,7 @@ public class Update : MonoBehaviour
                 case UnityWebRequest.Result.Success:
                     Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
                     newVersion = webRequest.downloadHandler.text;
+                    responseText.text = "Response: " + webRequest.downloadHandler.text;
                     CheckForUpdates();
                     break;
             }

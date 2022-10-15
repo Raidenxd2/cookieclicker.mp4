@@ -19,12 +19,15 @@ public class Game : MonoBehaviour
     public double CPS;
     public double Farms;
     public double FarmPrice;
+    public double MinePrice;
+    public double Mines;
     public bool HasJoined;
     public bool PostProcessing;
     public bool Music;
     public bool Sound;
     public bool Fullscreen;
     public bool Particles;
+    public double TimePlayed;
 
     //text
     public TMP_Text CookieCounter;
@@ -32,6 +35,7 @@ public class Game : MonoBehaviour
     public TMP_Text Shop_DoubleCookiePrice;
     public TMP_Text Shop_GrandmaPrice;
     public TMP_Text Shop_FarmPrice;
+    public TMP_Text Shop_MinePrice;
     public TMP_Text Stats_AutoClickers;
     public TMP_Text Stats_DoubleCookies;
     public TMP_Text Stats_Cookies;
@@ -40,6 +44,8 @@ public class Game : MonoBehaviour
     public TMP_Text Stats_CPC;
     public TMP_Text Stats_Farms;
     public TMP_Text Stats_Rebirths;
+    public TMP_Text Stats_Mines;
+    public TMP_Text Stats_TimePlayed;
 
     //UI
     public GameObject NotEnoughCookiesDialog;
@@ -94,6 +100,10 @@ public class Game : MonoBehaviour
         {
             FarmPrice = 300;
         }
+        if (MinePrice <= 1000)
+        {
+            MinePrice = 1000;
+        }
         if (Application.isMobilePlatform == true)
         {
             FullScreenToggleUI.SetActive(false);
@@ -118,6 +128,7 @@ public class Game : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         Cookies += CPS * rebirth.Rebirths;
+        TimePlayed += 1;
         StartCoroutine(Tick());
     }
 
@@ -180,6 +191,8 @@ public class Game : MonoBehaviour
         GrandmaPrice = data.GrandmaPrice;
         Farms = data.Farms;
         FarmPrice = data.FarmPrice;
+        Mines = data.Mines;
+        MinePrice = data.MinePrice;
         miniGameFarm.Farm1_IsGrowing = data.Farm1_IsGrowing;
         miniGameFarm.Farm2_IsGrowing = data.Farm2_IsGrowing;
         miniGameFarm.Farm3_IsGrowing = data.Farm3_IsGrowing;
@@ -198,6 +211,7 @@ public class Game : MonoBehaviour
         rebirth.Rebirths = data.Rebirths;
         rebirth.RebirthCookies = data.RebirthCookies;
         rebirth.RebirthGrandmas = data.RebirthGrandmas;
+        TimePlayed = data.TimePlayed;
     }
 
     public void ResetData()
@@ -213,6 +227,8 @@ public class Game : MonoBehaviour
         Grandmas = 0;
         Farms = 0;
         FarmPrice = 300;
+        Mines = 0;
+        MinePrice = 1000;
         miniGameFarm.Farm1_IsGrowing = false;
         miniGameFarm.Farm2_IsGrowing = false;
         miniGameFarm.Farm3_IsGrowing = false;
@@ -229,6 +245,7 @@ public class Game : MonoBehaviour
         rebirth.Rebirths = 1;
         rebirth.RebirthCookies = 1000000;
         rebirth.RebirthGrandmas = 10;
+        TimePlayed = 0;
         SavePlayer();
     }
 
@@ -302,6 +319,18 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void BuyMine()
+    {
+        if (Cookies >= MinePrice)
+        {
+            Cookies -= MinePrice;
+            MinePrice += 1000;
+            Mines += 1;
+            CPS += 3;
+            CPC += 10;
+        }
+    }
+
     public void QuitGame()
     {
         SavePlayer();
@@ -322,6 +351,7 @@ public class Game : MonoBehaviour
         Shop_DoubleCookiePrice.text = DoubleCookiesPrice.ToString("Double Cookie (" + "0" + " Cookies)");
         Shop_GrandmaPrice.text = GrandmaPrice.ToString("Grandma (" + "0" + " Cookies)");
         Shop_FarmPrice.text = FarmPrice.ToString("Farm (" + "0" + " Cookies)");
+        Shop_MinePrice.text = MinePrice.ToString("Mine ( " + "0" + " Cookies");
         Stats_AutoClickers.text = AutoClickers.ToString("Auto Clickers: " + "0");
         Stats_DoubleCookies.text = DoubleCookies.ToString("Double Cookies: " + "0");
         Stats_Cookies.text = Cookies.ToString("Cookies: " + "0");
@@ -330,6 +360,8 @@ public class Game : MonoBehaviour
         Stats_CPS.text = CPS.ToString("Total Cookies Per Second: " + "0");
         Stats_Farms.text = Farms.ToString("Farms: " + "0");
         Stats_Rebirths.text = rebirth.Rebirths.ToString("Rebirths: " + "0");
+        Stats_Mines.text = Mines.ToString("Mines: " + "0");
+        Stats_TimePlayed.text = TimePlayed.ToString("Time Played Seconds: " + "0");
         sounds[0].enabled = Sound;
         sounds[1].enabled = Music;
         pp.SetActive(PostProcessing);
