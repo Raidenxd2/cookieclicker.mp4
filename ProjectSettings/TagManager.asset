@@ -9,6 +9,7 @@ TagManager:
   - music
   - notification
   - farm
+  - rebirth
   layers:
   - Default
   - TransparentFX
