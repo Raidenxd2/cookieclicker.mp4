@@ -54,6 +54,7 @@ public class ScreenShot : MonoBehaviour
     {
         //string fileName = "screenshot" + Random.Range(0, 500000) + ".png";
         string datetime = System.DateTime.Now.ToString("MM-dd-yyyy hh;mm;ss");
+
         ScreenCapture.CaptureScreenshot(Application.persistentDataPath + "/screenshots/" + datetime + ".png", ScreenshotQuality);
         notification.ShowNotification("Screenshot saved at " + Application.persistentDataPath + filePath + "/" + datetime + ".png", "Screenshot Taken");
     }
