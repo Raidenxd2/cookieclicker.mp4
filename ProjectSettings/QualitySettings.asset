@@ -40,7 +40,7 @@ QualitySettings:
     asyncUploadBufferSize: 129
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: 83e74f2d08696c842b72b73e0612c6e7, type: 2}
+    customRenderPipeline: {fileID: 11400000, guid: 35492ab1b46a97641a487872a5f136c6, type: 2}
     excludedTargetPlatforms:
     - Android
     - WebGL
@@ -78,7 +78,7 @@ QualitySettings:
     asyncUploadBufferSize: 129
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: 83e74f2d08696c842b72b73e0612c6e7, type: 2}
+    customRenderPipeline: {fileID: 0}
     excludedTargetPlatforms:
     - Server
     - Standalone

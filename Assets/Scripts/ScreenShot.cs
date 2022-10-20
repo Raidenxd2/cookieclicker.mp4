@@ -1,20 +1,23 @@
 ﻿ using UnityEngine;
  using System.Collections;
  using System.IO;
+ using TMPro;
  
 public class ScreenShot : MonoBehaviour 
 {
      
     public string filePath;
     public Notification notification;
+    public int ScreenshotQuality;
+    public TMP_Text ScreenshotQualityText;
 
     void Start()
     {
         try
         {
-            if (!Directory.Exists(Application.dataPath + filePath))
+            if (!Directory.Exists(Application.persistentDataPath + filePath))
             {
-                Directory.CreateDirectory(Application.dataPath + filePath);
+                Directory.CreateDirectory(Application.persistentDataPath + filePath);
             }
  
         }
@@ -29,8 +32,8 @@ public class ScreenShot : MonoBehaviour
     {
         try
         {
-            Directory.Delete(Application.dataPath + filePath, true);
-            Directory.CreateDirectory(Application.dataPath + filePath);
+            Directory.Delete(Application.persistentDataPath + filePath, true);
+            Directory.CreateDirectory(Application.persistentDataPath + filePath);
         }
         catch (IOException ex)
         {
@@ -51,25 +54,19 @@ public class ScreenShot : MonoBehaviour
     {
         //string fileName = "screenshot" + Random.Range(0, 500000) + ".png";
         string datetime = System.DateTime.Now.ToString("MM-dd-yyyy hh;mm;ss");
-        ScreenCapture.CaptureScreenshot(Application.dataPath + "/screenshots/" + datetime + ".png", 2);
-        if (File.Exists(Application.dataPath + "/screenshots/" + datetime))
-        {
-            ScreenshotTaken();
-        }
-        notification.ShowNotification("Screenshot saved at " + Application.dataPath + filePath + "/" + datetime + ".png", "Screenshot Taken");
+        ScreenCapture.CaptureScreenshot(Application.persistentDataPath + "/screenshots/" + datetime + ".png", ScreenshotQuality);
+        notification.ShowNotification("Screenshot saved at " + Application.persistentDataPath + filePath + "/" + datetime + ".png", "Screenshot Taken");
     }
 
-    void ScreenshotTaken()
+    public void OnValueChanged(float newValue)
     {
-        Debug.Log("File Already Taken!");
-        //string fileName = "screenshot" + Random.Range(0, 500000) + ".png";
-        string datetime = System.DateTime.Now.ToString("MM-dd-yyyy hh;mm;ss");
-        ScreenCapture.CaptureScreenshot(Application.dataPath + "/screenshots/" + datetime + ".png", 2);
-        if (File.Exists(Application.dataPath + "/screenshots/" + datetime + ".png"))
-        {
-            ScreenshotTaken();
-        }
-        notification.ShowNotification("Screenshot saved at " + Application.dataPath + filePath + "/" + datetime + ".png", "Screenshot Taken");
+        string StringConvert;
+        int IntConvert;
+        StringConvert = newValue.ToString("0");
+        //int.TryParse(StringConvert, out IntConvert);
+        IntConvert = int.Parse(StringConvert);
+        ScreenshotQuality = IntConvert;
+        ScreenshotQualityText.text = IntConvert + "x";
     }
      
 }

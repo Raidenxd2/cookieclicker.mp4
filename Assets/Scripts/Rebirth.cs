@@ -64,6 +64,8 @@ public class Rebirth : MonoBehaviour
         game.miniGameFarm.Farm3_Type = "";
         game.miniGameFarm.Farm4_Type = "";
         game.miniGameFarm.WhiteCarrots = false;
+        game.Mines = 0;
+        game.MinePrice = 1000;
     }
 
     // Update is called once per frame
