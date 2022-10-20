@@ -50,7 +50,9 @@ public class Game : MonoBehaviour
     //UI
     public GameObject NotEnoughCookiesDialog;
     public GameObject MiniGames_FarmBTN;
+    public GameObject MiniGames_MineBTN;
     public GameObject FullScreenToggleUI;
+    public GameObject ScreenshotSettingsBTN;
     public GameObject TutorialScreen;
 
     //other
@@ -63,6 +65,11 @@ public class Game : MonoBehaviour
     public GameObject VFX;
     public Rebirth rebirth;
     public Update update;
+    public MiniGameMine miniGameMine;
+    public GameObject MiniGameMine;
+    public RenderTexture NotificationRender;
+    public ScreenShot screenShot;
+    public GameObject CookieGains;
 
     //Audio
     public AudioSource[] sounds;
@@ -90,6 +97,7 @@ public class Game : MonoBehaviour
             Sound = true;
             Fullscreen = true;
             Particles = true;
+            screenShot.ScreenshotQuality = 1;
             ResetData();
         }
         if (GrandmaPrice <= 125)
@@ -107,14 +115,35 @@ public class Game : MonoBehaviour
         if (Application.isMobilePlatform == true)
         {
             FullScreenToggleUI.SetActive(false);
+            ScreenshotSettingsBTN.SetActive(false);
         }
         else
         {
             FullScreenToggleUI.SetActive(true);
+            ScreenshotSettingsBTN.SetActive(false);
         }
+        StartCoroutine(bugfix());
         StartCoroutine(AutoSave());
         StartCoroutine(Tick());
         update.CheckForUpdatesGet();
+        ResizeRenderTexture(NotificationRender, Screen.currentResolution.width, Screen.currentResolution.height);
+    }
+
+    void ResizeRenderTexture(RenderTexture renderTexture, int width, int height) 
+    {
+        if (renderTexture) 
+        {
+            renderTexture.width = width;
+            renderTexture.height = height;
+            Debug.Log("Resized render texture to: " + renderTexture.width + renderTexture.height);
+        }
+    }
+
+    IEnumerator bugfix()
+    {
+        MiniGameMine.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        MiniGameMine.SetActive(false);
     }
 
     IEnumerator AutoSave()
@@ -167,7 +196,7 @@ public class Game : MonoBehaviour
 
     public void SavePlayer()
     {
-        SaveSystem.SavePlayer(this, miniGameFarm, rebirth);
+        SaveSystem.SavePlayer(this, miniGameFarm, rebirth, miniGameMine, screenShot);
     }
 
     public void LoadPlayer()
@@ -212,6 +241,14 @@ public class Game : MonoBehaviour
         rebirth.RebirthCookies = data.RebirthCookies;
         rebirth.RebirthGrandmas = data.RebirthGrandmas;
         TimePlayed = data.TimePlayed;
+        miniGameMine.HammerEnergy = data.HammerEnergy;
+        miniGameMine.HammerEnergyUpgradePrice = data.HammerEnergyUpgradePrice;
+        miniGameMine.HammerStrength = data.HammerStrength;
+        miniGameMine.HammerStrengthUpgradePrice = data.HammerStrengthUpgradePrice;
+        miniGameMine.Coins = data.Coins;
+        miniGameMine.CoinMultiplier = data.CoinMultiplier;
+        miniGameMine.CoinMultiplier = data.CoinMultiplierUpgradePrice;
+        screenShot.ScreenshotQuality = data.ScreenshotQuality;
     }
 
     public void ResetData()
@@ -246,6 +283,13 @@ public class Game : MonoBehaviour
         rebirth.RebirthCookies = 1000000;
         rebirth.RebirthGrandmas = 10;
         TimePlayed = 0;
+        miniGameMine.HammerEnergy = 100;
+        miniGameMine.HammerEnergyUpgradePrice = 200;
+        miniGameMine.HammerStrength = 0.2f;
+        miniGameMine.HammerStrengthUpgradePrice = 100;
+        miniGameMine.Coins = 0;
+        miniGameMine.CoinMultiplier = 1;
+        miniGameMine.CoinMultiplierUpgradePrice = 300;
         SavePlayer();
     }
 
@@ -253,6 +297,7 @@ public class Game : MonoBehaviour
     {
         Cookies += CPC * rebirth.Rebirths;
         Instantiate(CookieVFX, CookieVFXPos);
+        Instantiate(CookieGains, CookieVFXPos);
     }
 
     public void BuyAutoClicker()
@@ -329,6 +374,11 @@ public class Game : MonoBehaviour
             CPS += 3;
             CPC += 10;
         }
+        else
+        {
+            NotEnoughCookiesDialog.SetActive(true);
+            SoundManager.Instance.Play(errorSound);
+        }
     }
 
     public void QuitGame()
@@ -375,6 +425,14 @@ public class Game : MonoBehaviour
         else
         {
             MiniGames_FarmBTN.SetActive(false);
+        }
+        if (Mines >= 1)
+        {
+            MiniGames_MineBTN.SetActive(true);
+        }
+        else
+        {
+            MiniGames_MineBTN.SetActive(false);
         }
         if (!sounds[1].isPlaying)
         {

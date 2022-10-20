@@ -41,8 +41,16 @@ public class PlayerData
     public double Rebirths;
     public double Mines;
     public double MinePrice;
+    public float HammerStrength;
+    public float HammerEnergy;
+    public double HammerStrengthUpgradePrice;
+    public double Coins;
+    public double HammerEnergyUpgradePrice;
+    public double CoinMultiplier;
+    public double CoinMultiplierUpgradePrice;
+    public int ScreenshotQuality;
 
-    public PlayerData (Game ga, MiniGameFarm fa, Rebirth re)
+    public PlayerData (Game ga, MiniGameFarm fa, Rebirth re, MiniGameMine mi, ScreenShot ss)
     {
         Cookies = ga.Cookies;
         CPC = ga.CPC;
@@ -80,5 +88,13 @@ public class PlayerData
         Mines = ga.Mines;
         MinePrice = ga.MinePrice;
         TimePlayed = ga.TimePlayed;
+        HammerStrength = mi.HammerStrength;
+        HammerEnergy = mi.HammerEnergy;
+        HammerEnergyUpgradePrice = mi.HammerEnergyUpgradePrice;
+        HammerStrengthUpgradePrice = mi.HammerStrengthUpgradePrice;
+        Coins = mi.Coins;
+        CoinMultiplier = mi.CoinMultiplier;
+        CoinMultiplierUpgradePrice = mi.CoinMultiplierUpgradePrice;
+        ScreenshotQuality = ss.ScreenshotQuality;
     }
 }
