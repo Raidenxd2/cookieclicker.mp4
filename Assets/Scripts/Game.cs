@@ -120,7 +120,7 @@ public class Game : MonoBehaviour
         else
         {
             FullScreenToggleUI.SetActive(true);
-            ScreenshotSettingsBTN.SetActive(false);
+            ScreenshotSettingsBTN.SetActive(true);
         }
         StartCoroutine(bugfix());
         StartCoroutine(AutoSave());

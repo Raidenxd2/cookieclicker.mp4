@@ -125,7 +125,7 @@ public class MiniGameMine : MonoBehaviour
         if (Coins >= HammerStrengthUpgradePrice)
         {
             Coins -= HammerStrengthUpgradePrice;
-            HammerStrengthUpgradePrice += 10;
+            HammerStrengthUpgradePrice += 100;
             HammerStrength += 0.3f;
         }
         else
