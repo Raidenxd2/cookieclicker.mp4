@@ -49,8 +49,11 @@ public class PlayerData
     public double CoinMultiplier;
     public double CoinMultiplierUpgradePrice;
     public int ScreenshotQuality;
+    public bool NotificationsInScreenshots;
+    public bool offlineProgressCheck;
+    public string OfflineTime;
 
-    public PlayerData (Game ga, MiniGameFarm fa, Rebirth re, MiniGameMine mi, ScreenShot ss)
+    public PlayerData (Game ga, MiniGameFarm fa, Rebirth re, MiniGameMine mi, ScreenShot ss, OfflineManager om)
     {
         Cookies = ga.Cookies;
         CPC = ga.CPC;
@@ -96,5 +99,8 @@ public class PlayerData
         CoinMultiplier = mi.CoinMultiplier;
         CoinMultiplierUpgradePrice = mi.CoinMultiplierUpgradePrice;
         ScreenshotQuality = ss.ScreenshotQuality;
+        NotificationsInScreenshots = ss.NotificationsInScreenshots;
+        offlineProgressCheck = om.offlineProgressCheck;
+        OfflineTime = om.OfflineTime;
     }
 }

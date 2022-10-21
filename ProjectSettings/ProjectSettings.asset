@@ -50,8 +50,8 @@ PlayerSettings:
   m_ActiveColorSpace: 0
   m_MTRendering: 1
   mipStripping: 1
-  numberOfMipsStripped: 0
-  m_StackTraceTypes: 010000000100000001000000010000000100000001000000
+  numberOfMipsStripped: 3
+  m_StackTraceTypes: 010000000200000001000000010000000100000001000000
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
   iosUseCustomAppBackgroundBehavior: 0
@@ -154,7 +154,7 @@ PlayerSettings:
     enable360StereoCapture: 0
   isWsaHolographicRemotingEnabled: 0
   enableFrameTimingStats: 0
-  enableOpenGLProfilerGPURecorders: 1
+  enableOpenGLProfilerGPURecorders: 0
   useHDRDisplay: 0
   D3DHDRBitDepth: 0
   m_ColorGamuts: 00000000
@@ -700,14 +700,14 @@ PlayerSettings:
     Android: 6
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: 2DURP
-  metroPackageVersion: 1.0.0.0
+  metroPackageName: Cookieclicker.mp4
+  metroPackageVersion: 8.0.0.0
   metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: raiden
   metroCertificateIssuer: raiden
   metroCertificateNotAfter: 80134c6ebe03da01
-  metroApplicationDescription: 2D_URP
+  metroApplicationDescription: Cookieclicker.mp4
   wsaImages: {}
   metroTileShortName: Cookieclicker.mp4
   metroTileShowName: 0
@@ -722,7 +722,14 @@ PlayerSettings:
   metroSplashScreenBackgroundColor: {r: 0.12941177, g: 0.17254902, b: 0.21568628, a: 1}
   metroSplashScreenUseBackgroundColor: 0
   platformCapabilities: {}
-  metroTargetDeviceFamilies: {}
+  metroTargetDeviceFamilies:
+    Desktop: True
+    Holographic: True
+    IoT: True
+    IoTHeadless: True
+    Mobile: True
+    Team: True
+    Xbox: False
   metroFTAName: 
   metroFTAFileTypes: []
   metroProtocolName: 

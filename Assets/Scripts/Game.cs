@@ -70,6 +70,7 @@ public class Game : MonoBehaviour
     public RenderTexture NotificationRender;
     public ScreenShot screenShot;
     public GameObject CookieGains;
+    public OfflineManager offlineManager;
 
     //Audio
     public AudioSource[] sounds;
@@ -98,6 +99,7 @@ public class Game : MonoBehaviour
             Fullscreen = true;
             Particles = true;
             screenShot.ScreenshotQuality = 1;
+            screenShot.NotificationsInScreenshots = true;
             ResetData();
         }
         if (GrandmaPrice <= 125)
@@ -127,6 +129,15 @@ public class Game : MonoBehaviour
         StartCoroutine(Tick());
         update.CheckForUpdatesGet();
         ResizeRenderTexture(NotificationRender, Screen.currentResolution.width, Screen.currentResolution.height);
+        offlineManager.LoadOfflineTime();
+        SetMaxFPS();
+    }
+
+    void SetMaxFPS()
+    {
+        int refreshRate = Screen.currentResolution.refreshRate;
+        Application.targetFrameRate = 99999999;
+        Debug.Log("[DEBUG] User Refresh Rate: " + refreshRate);
     }
 
     void ResizeRenderTexture(RenderTexture renderTexture, int width, int height) 
@@ -196,7 +207,8 @@ public class Game : MonoBehaviour
 
     public void SavePlayer()
     {
-        SaveSystem.SavePlayer(this, miniGameFarm, rebirth, miniGameMine, screenShot);
+        offlineManager.SaveTime();
+        SaveSystem.SavePlayer(this, miniGameFarm, rebirth, miniGameMine, screenShot, offlineManager);
     }
 
     public void LoadPlayer()
@@ -249,6 +261,9 @@ public class Game : MonoBehaviour
         miniGameMine.CoinMultiplier = data.CoinMultiplier;
         miniGameMine.CoinMultiplier = data.CoinMultiplierUpgradePrice;
         screenShot.ScreenshotQuality = data.ScreenshotQuality;
+        screenShot.NotificationsInScreenshots = data.NotificationsInScreenshots;
+        offlineManager.offlineProgressCheck = data.offlineProgressCheck;
+        offlineManager.OfflineTime = data.OfflineTime;
     }
 
     public void ResetData()
@@ -290,6 +305,7 @@ public class Game : MonoBehaviour
         miniGameMine.Coins = 0;
         miniGameMine.CoinMultiplier = 1;
         miniGameMine.CoinMultiplierUpgradePrice = 300;
+
         SavePlayer();
     }
 
