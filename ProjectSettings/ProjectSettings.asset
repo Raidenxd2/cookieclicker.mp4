@@ -50,8 +50,8 @@ PlayerSettings:
   m_ActiveColorSpace: 0
   m_MTRendering: 1
   mipStripping: 1
-  numberOfMipsStripped: 0
-  m_StackTraceTypes: 010000000100000001000000010000000100000001000000
+  numberOfMipsStripped: 3
+  m_StackTraceTypes: 010000000200000001000000010000000100000001000000
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
   iosUseCustomAppBackgroundBehavior: 0
@@ -134,7 +134,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 7
+  bundleVersion: 8
   preloadedAssets:
   - {fileID: 8300000, guid: 7ded575e742039b43955af46e7fa5b5c, type: 3}
   - {fileID: 8300000, guid: 7e0a1ccf0ce478e4fa1e68f59153091a, type: 3}
@@ -143,6 +143,8 @@ PlayerSettings:
   - {fileID: 8300000, guid: e79139cb7b147cb4e9d73f99c88b890c, type: 3}
   - {fileID: 8300000, guid: 9f7a032adbfd10746a0a6cf1583a8907, type: 3}
   - {fileID: 8300000, guid: 502c9833dbe774e4d833e43d22d526d4, type: 3}
+  - {fileID: 8300000, guid: 9f741f8f75d460a44bf205db8fc4792b, type: 3}
+  - {fileID: 8300000, guid: 70b76e2a434ff464ba04256e2c29e73b, type: 3}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -152,7 +154,7 @@ PlayerSettings:
     enable360StereoCapture: 0
   isWsaHolographicRemotingEnabled: 0
   enableFrameTimingStats: 0
-  enableOpenGLProfilerGPURecorders: 1
+  enableOpenGLProfilerGPURecorders: 0
   useHDRDisplay: 0
   D3DHDRBitDepth: 0
   m_ColorGamuts: 00000000
@@ -698,16 +700,16 @@ PlayerSettings:
     Android: 6
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: 2D_URP
-  metroPackageVersion: 
-  metroCertificatePath: 
+  metroPackageName: Cookieclicker.mp4
+  metroPackageVersion: 8.0.0.0
+  metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: 2D_URP
+  metroCertificateSubject: raiden
+  metroCertificateIssuer: raiden
+  metroCertificateNotAfter: 80134c6ebe03da01
+  metroApplicationDescription: Cookieclicker.mp4
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Cookieclicker.mp4
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
@@ -720,7 +722,14 @@ PlayerSettings:
   metroSplashScreenBackgroundColor: {r: 0.12941177, g: 0.17254902, b: 0.21568628, a: 1}
   metroSplashScreenUseBackgroundColor: 0
   platformCapabilities: {}
-  metroTargetDeviceFamilies: {}
+  metroTargetDeviceFamilies:
+    Desktop: True
+    Holographic: True
+    IoT: True
+    IoTHeadless: True
+    Mobile: True
+    Team: True
+    Xbox: False
   metroFTAName: 
   metroFTAFileTypes: []
   metroProtocolName: 

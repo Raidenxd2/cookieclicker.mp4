@@ -19,6 +19,7 @@ public class PlayerData
     public bool Music;
     public bool Sound;
     public bool Fullscreen;
+    public double TimePlayed;
 
     //farm
     public bool Farm1_IsGrowing;
@@ -35,8 +36,24 @@ public class PlayerData
     public string Farm4_Type;
     public bool WhiteCarrots;
     public bool Particles;
+    public double RebirthCookies;
+    public double RebirthGrandmas;
+    public double Rebirths;
+    public double Mines;
+    public double MinePrice;
+    public float HammerStrength;
+    public float HammerEnergy;
+    public double HammerStrengthUpgradePrice;
+    public double Coins;
+    public double HammerEnergyUpgradePrice;
+    public double CoinMultiplier;
+    public double CoinMultiplierUpgradePrice;
+    public int ScreenshotQuality;
+    public bool NotificationsInScreenshots;
+    public bool offlineProgressCheck;
+    public string OfflineTime;
 
-    public PlayerData (Game ga, MiniGameFarm fa)
+    public PlayerData (Game ga, MiniGameFarm fa, Rebirth re, MiniGameMine mi, ScreenShot ss, OfflineManager om)
     {
         Cookies = ga.Cookies;
         CPC = ga.CPC;
@@ -68,5 +85,22 @@ public class PlayerData
         WhiteCarrots = fa.WhiteCarrots;
         Fullscreen = ga.Fullscreen;
         Particles = ga.Particles;
+        RebirthCookies = re.RebirthCookies;
+        RebirthGrandmas = re.RebirthGrandmas;
+        Rebirths = re.Rebirths;
+        Mines = ga.Mines;
+        MinePrice = ga.MinePrice;
+        TimePlayed = ga.TimePlayed;
+        HammerStrength = mi.HammerStrength;
+        HammerEnergy = mi.HammerEnergy;
+        HammerEnergyUpgradePrice = mi.HammerEnergyUpgradePrice;
+        HammerStrengthUpgradePrice = mi.HammerStrengthUpgradePrice;
+        Coins = mi.Coins;
+        CoinMultiplier = mi.CoinMultiplier;
+        CoinMultiplierUpgradePrice = mi.CoinMultiplierUpgradePrice;
+        ScreenshotQuality = ss.ScreenshotQuality;
+        NotificationsInScreenshots = ss.NotificationsInScreenshots;
+        offlineProgressCheck = om.offlineProgressCheck;
+        OfflineTime = om.OfflineTime;
     }
 }
