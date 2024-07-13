@@ -136,7 +136,7 @@ public class Game : MonoBehaviour
     void SetMaxFPS()
     {
         int refreshRate = Screen.currentResolution.refreshRate;
-        Application.targetFrameRate = 99999999;
+        Application.targetFrameRate = 60;
         Debug.Log("[DEBUG] User Refresh Rate: " + refreshRate);
     }
 
@@ -172,24 +172,24 @@ public class Game : MonoBehaviour
         StartCoroutine(Tick());
     }
 
-    public void PostProcessToggle()
+    public void PostProcessToggle(bool toggle)
     {
-        PostProcessing = !PostProcessing;
+        PostProcessing = toggle;
     }
 
-    public void MusicToggle()
+    public void MusicToggle(bool toggle)
     {
-        Music = !Music;
+        Music = toggle;
     }
 
-    public void SoundToggle()
+    public void SoundToggle(bool toggle)
     {
-        Sound = !Sound;
+        Sound = toggle;
     }
 
-    public void FullscreenToggle()
+    public void FullscreenToggle(bool toggle)
     {
-        Fullscreen = !Fullscreen;
+        Fullscreen = toggle;
         if (Fullscreen == true)
         {
             Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, FullScreenMode.FullScreenWindow, Screen.currentResolution.refreshRate);
@@ -200,9 +200,9 @@ public class Game : MonoBehaviour
         }
     }
 
-    public void ParticlesToggle()
+    public void ParticlesToggle(bool toggle)
     {
-        Particles = !Particles;
+        Particles = toggle;
     }
 
     public void SavePlayer()
@@ -428,8 +428,22 @@ public class Game : MonoBehaviour
         Stats_Rebirths.text = rebirth.Rebirths.ToString("Rebirths: " + "0");
         Stats_Mines.text = Mines.ToString("Mines: " + "0");
         Stats_TimePlayed.text = TimePlayed.ToString("Time Played Seconds: " + "0");
-        sounds[0].enabled = Sound;
-        sounds[1].enabled = Music;
+        if (Sound)
+        {
+            sounds[0].volume = 1;
+        }
+        else
+        {
+            sounds[0].volume = 0;
+        }
+        if (Music)
+        {
+            sounds[1].volume = 1;
+        }
+        else
+        {
+            sounds[1].volume = 1;
+        }
         pp.SetActive(PostProcessing);
         Screen.fullScreen = Fullscreen;
         VFX.SetActive(Particles);
