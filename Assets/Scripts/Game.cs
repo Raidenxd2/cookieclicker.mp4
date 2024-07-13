@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.PostProcessing;
 
 public class Game : MonoBehaviour
 {
@@ -18,12 +19,15 @@ public class Game : MonoBehaviour
     public double CPS;
     public double Farms;
     public double FarmPrice;
+    public double MinePrice;
+    public double Mines;
     public bool HasJoined;
     public bool PostProcessing;
     public bool Music;
     public bool Sound;
     public bool Fullscreen;
     public bool Particles;
+    public double TimePlayed;
 
     //text
     public TMP_Text CookieCounter;
@@ -31,6 +35,7 @@ public class Game : MonoBehaviour
     public TMP_Text Shop_DoubleCookiePrice;
     public TMP_Text Shop_GrandmaPrice;
     public TMP_Text Shop_FarmPrice;
+    public TMP_Text Shop_MinePrice;
     public TMP_Text Stats_AutoClickers;
     public TMP_Text Stats_DoubleCookies;
     public TMP_Text Stats_Cookies;
@@ -38,11 +43,16 @@ public class Game : MonoBehaviour
     public TMP_Text Stats_CPS;
     public TMP_Text Stats_CPC;
     public TMP_Text Stats_Farms;
+    public TMP_Text Stats_Rebirths;
+    public TMP_Text Stats_Mines;
+    public TMP_Text Stats_TimePlayed;
 
     //UI
     public GameObject NotEnoughCookiesDialog;
     public GameObject MiniGames_FarmBTN;
+    public GameObject MiniGames_MineBTN;
     public GameObject FullScreenToggleUI;
+    public GameObject ScreenshotSettingsBTN;
     public GameObject TutorialScreen;
 
     //other
@@ -53,6 +63,14 @@ public class Game : MonoBehaviour
     public GameObject CookieVFX;
     public Transform CookieVFXPos;
     public GameObject VFX;
+    public Rebirth rebirth;
+    public Update update;
+    public MiniGameMine miniGameMine;
+    public GameObject MiniGameMine;
+    public RenderTexture NotificationRender;
+    public ScreenShot screenShot;
+    public GameObject CookieGains;
+    public OfflineManager offlineManager;
 
     //Audio
     public AudioSource[] sounds;
@@ -80,6 +98,8 @@ public class Game : MonoBehaviour
             Sound = true;
             Fullscreen = true;
             Particles = true;
+            screenShot.ScreenshotQuality = 1;
+            screenShot.NotificationsInScreenshots = true;
             ResetData();
         }
         if (GrandmaPrice <= 125)
@@ -90,16 +110,51 @@ public class Game : MonoBehaviour
         {
             FarmPrice = 300;
         }
+        if (MinePrice <= 1000)
+        {
+            MinePrice = 1000;
+        }
         if (Application.isMobilePlatform == true)
         {
             FullScreenToggleUI.SetActive(false);
+            ScreenshotSettingsBTN.SetActive(false);
         }
         else
         {
             FullScreenToggleUI.SetActive(true);
+            ScreenshotSettingsBTN.SetActive(true);
         }
+        StartCoroutine(bugfix());
         StartCoroutine(AutoSave());
         StartCoroutine(Tick());
+        update.CheckForUpdatesGet();
+        ResizeRenderTexture(NotificationRender, Screen.currentResolution.width, Screen.currentResolution.height);
+        offlineManager.LoadOfflineTime();
+        SetMaxFPS();
+    }
+
+    void SetMaxFPS()
+    {
+        int refreshRate = Screen.currentResolution.refreshRate;
+        Application.targetFrameRate = 60;
+        Debug.Log("[DEBUG] User Refresh Rate: " + refreshRate);
+    }
+
+    void ResizeRenderTexture(RenderTexture renderTexture, int width, int height) 
+    {
+        if (renderTexture) 
+        {
+            renderTexture.width = width;
+            renderTexture.height = height;
+            Debug.Log("Resized render texture to: " + renderTexture.width + renderTexture.height);
+        }
+    }
+
+    IEnumerator bugfix()
+    {
+        MiniGameMine.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        MiniGameMine.SetActive(false);
     }
 
     IEnumerator AutoSave()
@@ -112,28 +167,29 @@ public class Game : MonoBehaviour
     IEnumerator Tick()
     {
         yield return new WaitForSeconds(1);
-        Cookies += CPS;
+        Cookies += CPS * rebirth.Rebirths;
+        TimePlayed += 1;
         StartCoroutine(Tick());
     }
 
-    public void PostProcessToggle()
+    public void PostProcessToggle(bool toggle)
     {
-        PostProcessing = !PostProcessing;
+        PostProcessing = toggle;
     }
 
-    public void MusicToggle()
+    public void MusicToggle(bool toggle)
     {
-        Music = !Music;
+        Music = toggle;
     }
 
-    public void SoundToggle()
+    public void SoundToggle(bool toggle)
     {
-        Sound = !Sound;
+        Sound = toggle;
     }
 
-    public void FullscreenToggle()
+    public void FullscreenToggle(bool toggle)
     {
-        Fullscreen = !Fullscreen;
+        Fullscreen = toggle;
         if (Fullscreen == true)
         {
             Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, FullScreenMode.FullScreenWindow, Screen.currentResolution.refreshRate);
@@ -144,14 +200,15 @@ public class Game : MonoBehaviour
         }
     }
 
-    public void ParticlesToggle()
+    public void ParticlesToggle(bool toggle)
     {
-        Particles = !Particles;
+        Particles = toggle;
     }
 
     public void SavePlayer()
     {
-        SaveSystem.SavePlayer(this, miniGameFarm);
+        offlineManager.SaveTime();
+        SaveSystem.SavePlayer(this, miniGameFarm, rebirth, miniGameMine, screenShot, offlineManager);
     }
 
     public void LoadPlayer()
@@ -175,6 +232,8 @@ public class Game : MonoBehaviour
         GrandmaPrice = data.GrandmaPrice;
         Farms = data.Farms;
         FarmPrice = data.FarmPrice;
+        Mines = data.Mines;
+        MinePrice = data.MinePrice;
         miniGameFarm.Farm1_IsGrowing = data.Farm1_IsGrowing;
         miniGameFarm.Farm2_IsGrowing = data.Farm2_IsGrowing;
         miniGameFarm.Farm3_IsGrowing = data.Farm3_IsGrowing;
@@ -190,6 +249,21 @@ public class Game : MonoBehaviour
         miniGameFarm.WhiteCarrots = data.WhiteCarrots;
         Fullscreen = data.Fullscreen;
         Particles = data.Particles;
+        rebirth.Rebirths = data.Rebirths;
+        rebirth.RebirthCookies = data.RebirthCookies;
+        rebirth.RebirthGrandmas = data.RebirthGrandmas;
+        TimePlayed = data.TimePlayed;
+        miniGameMine.HammerEnergy = data.HammerEnergy;
+        miniGameMine.HammerEnergyUpgradePrice = data.HammerEnergyUpgradePrice;
+        miniGameMine.HammerStrength = data.HammerStrength;
+        miniGameMine.HammerStrengthUpgradePrice = data.HammerStrengthUpgradePrice;
+        miniGameMine.Coins = data.Coins;
+        miniGameMine.CoinMultiplier = data.CoinMultiplier;
+        miniGameMine.CoinMultiplier = data.CoinMultiplierUpgradePrice;
+        screenShot.ScreenshotQuality = data.ScreenshotQuality;
+        screenShot.NotificationsInScreenshots = data.NotificationsInScreenshots;
+        offlineManager.offlineProgressCheck = data.offlineProgressCheck;
+        offlineManager.OfflineTime = data.OfflineTime;
     }
 
     public void ResetData()
@@ -205,6 +279,8 @@ public class Game : MonoBehaviour
         Grandmas = 0;
         Farms = 0;
         FarmPrice = 300;
+        Mines = 0;
+        MinePrice = 1000;
         miniGameFarm.Farm1_IsGrowing = false;
         miniGameFarm.Farm2_IsGrowing = false;
         miniGameFarm.Farm3_IsGrowing = false;
@@ -218,13 +294,26 @@ public class Game : MonoBehaviour
         miniGameFarm.Farm3_Type = "";
         miniGameFarm.Farm4_Type = "";
         miniGameFarm.WhiteCarrots = false;
+        rebirth.Rebirths = 1;
+        rebirth.RebirthCookies = 1000000;
+        rebirth.RebirthGrandmas = 10;
+        TimePlayed = 0;
+        miniGameMine.HammerEnergy = 100;
+        miniGameMine.HammerEnergyUpgradePrice = 200;
+        miniGameMine.HammerStrength = 0.2f;
+        miniGameMine.HammerStrengthUpgradePrice = 100;
+        miniGameMine.Coins = 0;
+        miniGameMine.CoinMultiplier = 1;
+        miniGameMine.CoinMultiplierUpgradePrice = 300;
+
         SavePlayer();
     }
 
     public void bakeCookie()
     {
-        Cookies += CPC;
+        Cookies += CPC * rebirth.Rebirths;
         Instantiate(CookieVFX, CookieVFXPos);
+        Instantiate(CookieGains, CookieVFXPos);
     }
 
     public void BuyAutoClicker()
@@ -291,6 +380,23 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void BuyMine()
+    {
+        if (Cookies >= MinePrice)
+        {
+            Cookies -= MinePrice;
+            MinePrice += 1000;
+            Mines += 1;
+            CPS += 3;
+            CPC += 10;
+        }
+        else
+        {
+            NotEnoughCookiesDialog.SetActive(true);
+            SoundManager.Instance.Play(errorSound);
+        }
+    }
+
     public void QuitGame()
     {
         SavePlayer();
@@ -311,6 +417,7 @@ public class Game : MonoBehaviour
         Shop_DoubleCookiePrice.text = DoubleCookiesPrice.ToString("Double Cookie (" + "0" + " Cookies)");
         Shop_GrandmaPrice.text = GrandmaPrice.ToString("Grandma (" + "0" + " Cookies)");
         Shop_FarmPrice.text = FarmPrice.ToString("Farm (" + "0" + " Cookies)");
+        Shop_MinePrice.text = MinePrice.ToString("Mine ( " + "0" + " Cookies");
         Stats_AutoClickers.text = AutoClickers.ToString("Auto Clickers: " + "0");
         Stats_DoubleCookies.text = DoubleCookies.ToString("Double Cookies: " + "0");
         Stats_Cookies.text = Cookies.ToString("Cookies: " + "0");
@@ -318,8 +425,25 @@ public class Game : MonoBehaviour
         Stats_CPC.text = CPC.ToString("Total Cookies Per Click: " + "0");
         Stats_CPS.text = CPS.ToString("Total Cookies Per Second: " + "0");
         Stats_Farms.text = Farms.ToString("Farms: " + "0");
-        sounds[0].enabled = Sound;
-        sounds[1].enabled = Music;
+        Stats_Rebirths.text = rebirth.Rebirths.ToString("Rebirths: " + "0");
+        Stats_Mines.text = Mines.ToString("Mines: " + "0");
+        Stats_TimePlayed.text = TimePlayed.ToString("Time Played Seconds: " + "0");
+        if (Sound)
+        {
+            sounds[0].volume = 1;
+        }
+        else
+        {
+            sounds[0].volume = 0;
+        }
+        if (Music)
+        {
+            sounds[1].volume = 1;
+        }
+        else
+        {
+            sounds[1].volume = 1;
+        }
         pp.SetActive(PostProcessing);
         Screen.fullScreen = Fullscreen;
         VFX.SetActive(Particles);
@@ -331,6 +455,14 @@ public class Game : MonoBehaviour
         else
         {
             MiniGames_FarmBTN.SetActive(false);
+        }
+        if (Mines >= 1)
+        {
+            MiniGames_MineBTN.SetActive(true);
+        }
+        else
+        {
+            MiniGames_MineBTN.SetActive(false);
         }
         if (!sounds[1].isPlaying)
         {
