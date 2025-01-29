@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-using UnityEngine.Rendering.PostProcessing;
+using System.IO;
 
 public class Game : MonoBehaviour
 {
@@ -85,10 +85,11 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        LoadPlayer();
-        soundManager = GameObject.FindGameObjectWithTag("sound").GetComponent<SoundManager>();
-        sounds = GameObject.FindGameObjectWithTag("sound").GetComponents<AudioSource>();
-        if (HasJoined == false)
+        if (File.Exists(Application.persistentDataPath + "/cookie"))
+        {
+            LoadPlayer();
+        }
+        else
         {
             TutorialScreen.SetActive(true);
             SavePlayer();
@@ -101,7 +102,13 @@ public class Game : MonoBehaviour
             screenShot.ScreenshotQuality = 1;
             screenShot.NotificationsInScreenshots = true;
             ResetData();
+            SavePlayer();
+            Reload();
         }
+        
+        soundManager = GameObject.FindGameObjectWithTag("sound").GetComponent<SoundManager>();
+        sounds = GameObject.FindGameObjectWithTag("sound").GetComponents<AudioSource>();
+        
         if (GrandmaPrice <= 125)
         {
             GrandmaPrice = 125;
@@ -127,7 +134,7 @@ public class Game : MonoBehaviour
         StartCoroutine(bugfix());
         StartCoroutine(AutoSave());
         StartCoroutine(Tick());
-        update.CheckForUpdatesGet();
+        // update.CheckForUpdatesGet();
         ResizeRenderTexture(NotificationRender, Screen.currentResolution.width, Screen.currentResolution.height);
         offlineManager.LoadOfflineTime();
         SetMaxFPS();
@@ -135,8 +142,9 @@ public class Game : MonoBehaviour
 
     void SetMaxFPS()
     {
-        int refreshRate = Screen.currentResolution.refreshRate;
-        Application.targetFrameRate = 60;
+        int refreshRate = (int)Screen.currentResolution.refreshRateRatio.value;
+        refreshRate++;
+        Application.targetFrameRate = refreshRate;
         Debug.Log("[DEBUG] User Refresh Rate: " + refreshRate);
     }
 
@@ -442,7 +450,7 @@ public class Game : MonoBehaviour
         }
         else
         {
-            sounds[1].volume = 1;
+            sounds[1].volume = 0;
         }
         pp.SetActive(PostProcessing);
         Screen.fullScreen = Fullscreen;

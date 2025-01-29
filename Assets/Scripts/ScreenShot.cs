@@ -2,7 +2,8 @@
  using System.Collections;
  using System.IO;
  using TMPro;
- 
+using UnityEngine.InputSystem;
+
 public class ScreenShot : MonoBehaviour 
 {
      
@@ -51,7 +52,7 @@ public class ScreenShot : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.F12))
+        if (Keyboard.current.f12Key.wasPressedThisFrame)
         {
             TakeScreenshot();
         }
