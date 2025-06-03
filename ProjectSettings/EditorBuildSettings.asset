@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Game.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/Reload.unity
+    path: Assets/Scenes/reload.unity
     guid: c494db3cfa5837048bafb3bc015fca0b
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: ad87b0941bce05f4aa93cd1161af9019, type: 2}
