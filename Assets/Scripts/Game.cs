@@ -64,7 +64,6 @@ public class Game : MonoBehaviour
     public Transform CookieVFXPos;
     public GameObject VFX;
     public Rebirth rebirth;
-    public Update update;
     public MiniGameMine miniGameMine;
     public GameObject MiniGameMine;
     public RenderTexture NotificationRender;
@@ -99,8 +98,10 @@ public class Game : MonoBehaviour
             Sound = true;
             Fullscreen = true;
             Particles = true;
+#if !UNITY_WEBGL
             screenShot.ScreenshotQuality = 1;
             screenShot.NotificationsInScreenshots = true;
+#endif
             ResetData();
             SavePlayer();
             Reload();
@@ -121,6 +122,10 @@ public class Game : MonoBehaviour
         {
             MinePrice = 1000;
         }
+#if UNITY_WEBGL
+        FullScreenToggleUI.SetActive(false);
+        ScreenshotSettingsBTN.SetActive(false);
+#else
         if (Application.isMobilePlatform == true)
         {
             FullScreenToggleUI.SetActive(false);
@@ -131,10 +136,10 @@ public class Game : MonoBehaviour
             FullScreenToggleUI.SetActive(true);
             ScreenshotSettingsBTN.SetActive(true);
         }
+#endif
         StartCoroutine(bugfix());
         StartCoroutine(AutoSave());
         StartCoroutine(Tick());
-        // update.CheckForUpdatesGet();
         ResizeRenderTexture(NotificationRender, Screen.currentResolution.width, Screen.currentResolution.height);
         offlineManager.LoadOfflineTime();
         SetMaxFPS();
@@ -195,6 +200,7 @@ public class Game : MonoBehaviour
         Sound = toggle;
     }
 
+#if !UNITY_WEBGL
     public void FullscreenToggle(bool toggle)
     {
         Fullscreen = toggle;
@@ -207,6 +213,7 @@ public class Game : MonoBehaviour
             Screen.SetResolution(800, 600, FullScreenMode.Windowed, Screen.currentResolution.refreshRate);
         }
     }
+#endif
 
     public void ParticlesToggle(bool toggle)
     {
@@ -453,7 +460,9 @@ public class Game : MonoBehaviour
             sounds[1].volume = 0;
         }
         pp.SetActive(PostProcessing);
+#if !UNITY_WEBGL
         Screen.fullScreen = Fullscreen;
+#endif
         VFX.SetActive(Particles);
         
         if (Farms >= 1)

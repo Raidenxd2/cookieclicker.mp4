@@ -1,17 +1,20 @@
-﻿ using UnityEngine;
- using System.Collections;
- using System.IO;
- using TMPro;
-using UnityEngine.InputSystem;
+﻿using UnityEngine;
+using System.IO;
+using TMPro;
 
 public class ScreenShot : MonoBehaviour 
 {
-     
+#if !UNITY_WEBGL
     public string filePath;
     public Notification notification;
+#endif
     public int ScreenshotQuality;
+#if !UNITY_WEBGL
     public TMP_Text ScreenshotQualityText;
+#endif
     public bool NotificationsInScreenshots;
+
+#if !UNITY_WEBGL
     public GameObject Notification;
 
     void Start()
@@ -52,7 +55,7 @@ public class ScreenShot : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.f12Key.wasPressedThisFrame)
+        if (Input.GetKeyDown(KeyCode.F12))
         {
             TakeScreenshot();
         }
@@ -86,5 +89,5 @@ public class ScreenShot : MonoBehaviour
         ScreenshotQuality = IntConvert;
         ScreenshotQualityText.text = IntConvert + "x";
     }
-     
+#endif
 }
