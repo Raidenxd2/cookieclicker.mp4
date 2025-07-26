@@ -1,0 +1,16 @@
+{
+    "m_Dictionary": {
+        "m_DictionaryValues": [
+            {
+                "type": "System.Collections.Generic.List`1[[Unity.Web.Stripping.Editor.WebBuildReport, Unity.Web.Stripping.Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "key": "WebBuildReportList.Builds",
+                "value": "{\"m_Value\":[{\"m_BuildGuid\":{},\"Name\":\"CC1WebGL\",\"OutputPath\":\"C:/Users/Lemres/cookieclicker.mp4/Builds/CC1WebGL\",\"LastModifiedAtUniversal\":\"7/26/2025 6:31:33 PM\",\"OriginalWasmSize\":41411382,\"StrippedWasmSize\":21783372,\"WasmFilePath\":\"C:/Users/Lemres/cookieclicker.mp4/Builds/CC1WebGL\\\\Build\\\\CC1WebGL.wasm\",\"WasmBackupFilePath\":\"C:\\\\Users\\\\Lemres\\\\cookieclicker.mp4\\\\Library\\\\com.unity.web.stripping-tool\\\\CC1WebGL-65fc6720f8b94917a1fb006456cb0361\\\\CC1WebGL.wasm.bak\",\"SymbolFilePath\":\"\",\"StrippingInfoFilePath\":\"C:\\\\Users\\\\Lemres\\\\cookieclicker.mp4\\\\Library\\\\com.unity.web.stripping-tool\\\\CC1WebGL-65fc6720f8b94917a1fb006456cb0361\\\\stripping_info.json\",\"PlayerSettingsFilePath\":\"C:\\\\Users\\\\Lemres\\\\cookieclicker.mp4\\\\Library\\\\com.unity.web.stripping-tool\\\\CC1WebGL-65fc6720f8b94917a1fb006456cb0361\\\\player_settings.json\",\"MethodMapFilePath\":\"C:\\\\Users\\\\Lemres\\\\cookieclicker.mp4\\\\Library\\\\com.unity.web.stripping-tool\\\\CC1WebGL-65fc6720f8b94917a1fb006456cb0361\\\\MethodMap.tsv\",\"FrameworkFilePath\":\"C:/Users/Lemres/cookieclicker.mp4/Builds/CC1WebGL\\\\Build\\\\CC1WebGL.framework.js\",\"FrameworkBackupFilePath\":\"\",\"AdditionalFiles\":[\"C:\\\\Users\\\\Lemres\\\\cookieclicker.mp4\\\\Library\\\\com.unity.web.stripping-tool\\\\CC1WebGL-65fc6720f8b94917a1fb006456cb0361\\\\stripping_info.json\",\"C:\\\\Users\\\\Lemres\\\\cookieclicker.mp4\\\\Library\\\\com.unity.web.stripping-tool\\\\CC1WebGL-65fc6720f8b94917a1fb006456cb0361\\\\stripping_info.json\",\"C:\\\\Users\\\\Lemres\\\\cookieclicker.mp4\\\\Library\\\\com.unity.web.stripping-tool\\\\CC1WebGL-65fc6720f8b94917a1fb006456cb0361\\\\stripping_info.json\"],\"HasSubmoduleProfiling\":false,\"OriginalPlayerSettingsFilePath\":\"\"}]}"
+            },
+            {
+                "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "key": "SubmoduleSelectionWindow.LastProfilingDataPath",
+                "value": "{\"m_Value\":\"C:/Users/Lemres/Downloads/submodule_report(1).json\"}"
+            }
+        ]
+    }
+}

@@ -51,7 +51,6 @@ namespace HSVPicker
             Setup.ColorBox.Toggle(Setup.ShowColorBox);
 
             HandleHeaderSetting(Setup.ShowHeader);
-            UpdateColorToggleText();
 
             RGBChanged();
             SendChangedEvent();
@@ -276,21 +275,6 @@ namespace HSVPicker
             Setup.RgbSliders.Toggle(Setup.ShowRgb);
             
             onHSVChanged.Invoke(_hue, _saturation, _brightness);
-
-            UpdateColorToggleText();
-        }
-
-        void UpdateColorToggleText()
-        {
-            if (Setup.ShowRgb)
-            {
-                Setup.SliderToggleButtonText.text = "RGB";
-            }
-
-            if (Setup.ShowHsv)
-            {
-                Setup.SliderToggleButtonText.text = "HSV";
-            }
         }
 
         private void HandleHeaderSetting(ColorPickerSetup.ColorHeaderShowing setupShowHeader)

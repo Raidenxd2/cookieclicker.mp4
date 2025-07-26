@@ -55,7 +55,7 @@ PlayerSettings:
   mipStripping: 1
   numberOfMipsStripped: 0
   numberOfMipsStrippedPerMipmapLimitGroup: {}
-  m_StackTraceTypes: 010000000000000000000000000000000100000001000000
+  m_StackTraceTypes: 000000000000000000000000000000000100000001000000
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
   iosUseCustomAppBackgroundBehavior: 0
@@ -392,6 +392,9 @@ PlayerSettings:
   - m_BuildTarget: Standalone
     m_StaticBatching: 1
     m_DynamicBatching: 0
+  - m_BuildTarget: WebGL
+    m_StaticBatching: 0
+    m_DynamicBatching: 0
   m_BuildTargetShaderSettings:
   - m_BuildTarget: Android
     m_ChunkSizeInMB: 1
@@ -704,7 +707,7 @@ PlayerSettings:
   webGLNameFilesAsHashes: 0
   webGLShowDiagnostics: 0
   webGLDataCaching: 1
-  webGLDebugSymbols: 0
+  webGLDebugSymbols: 2
   webGLEmscriptenArgs: 
   webGLModulesDirectory: 
   webGLTemplate: APPLICATION:Minimal
@@ -726,7 +729,7 @@ PlayerSettings:
   webGLWebAssemblyBigInt: 1
   webGLCloseOnQuit: 0
   webWasm2023: 0
-  webEnableSubmoduleStrippingCompatibility: 0
+  webEnableSubmoduleStrippingCompatibility: 1
   scriptingDefineSymbols:
     Android: 
     EmbeddedLinux: 

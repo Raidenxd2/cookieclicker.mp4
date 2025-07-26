@@ -12,6 +12,7 @@
     "com.unity.test-framework.performance": "https://github.com/Raidenxd2/com.unity.test-framework.performance_empty.git",
     "com.unity.textmeshpro": "3.0.9",
     "com.unity.ugui": "1.0.0",
+    "com.unity.web.stripping-tool": "1.1.0",
     "com.unity.modules.animation": "1.0.0",
     "com.unity.modules.audio": "1.0.0",
     "com.unity.modules.imageconversion": "1.0.0",
