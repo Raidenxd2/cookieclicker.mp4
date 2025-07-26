@@ -140,7 +140,6 @@ public class Game : MonoBehaviour
         StartCoroutine(bugfix());
         StartCoroutine(AutoSave());
         StartCoroutine(Tick());
-        ResizeRenderTexture(NotificationRender, Screen.currentResolution.width, Screen.currentResolution.height);
         offlineManager.LoadOfflineTime();
         SetMaxFPS();
     }
@@ -151,16 +150,6 @@ public class Game : MonoBehaviour
         refreshRate++;
         Application.targetFrameRate = refreshRate;
         Debug.Log("[DEBUG] User Refresh Rate: " + refreshRate);
-    }
-
-    void ResizeRenderTexture(RenderTexture renderTexture, int width, int height) 
-    {
-        if (renderTexture) 
-        {
-            renderTexture.width = width;
-            renderTexture.height = height;
-            Debug.Log("Resized render texture to: " + renderTexture.width + renderTexture.height);
-        }
     }
 
     IEnumerator bugfix()
