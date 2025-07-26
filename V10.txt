@@ -1,0 +1,7 @@
+V10:
+Upgraded to Unity 6000.1.13f1
+Fixed not being able to click properly in Minigame Drill
+Fixed Cookies Gained animation flashing
+Optimized notifications
+Optimized the map in Minigame Drill
+Reduced the size of the WebGL build
