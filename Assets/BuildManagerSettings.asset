@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8ea87b8dd4d32641b64da18662f9b08, type: 3}
   m_Name: BuildManagerSettings
   m_EditorClassIdentifier: 
-  BuildCount: 13
+  BuildCount: 15
   Branch: main
   VersionPrefix: 10
   ExeName: Cookieclicker.mp4
@@ -21,5 +21,5 @@ MonoBehaviour:
   StripUnneededFilesFromAssetBundleBuild: 0
   BuildAssetBundles: 1
   RemoveBurstDebugInformation: 1
-  IncrementBuildNumber: 1
+  IncrementBuildNumber: 0
   CompressionType: 0
