@@ -1,13 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MineNotificationAnimation : MonoBehaviour
 {
-
     public Animation NotificationAnimations;
     public GameObject NotificationObject;
-    private RectTransform rectTransform;
     private Vector2 position;
     private bool Playing;
     public RectTransform OringinalPos;

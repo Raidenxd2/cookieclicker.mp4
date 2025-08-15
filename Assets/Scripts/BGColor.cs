@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using HSVPicker;
 using UnityEngine;
 
 public class BGColor : MonoBehaviour
 {
-
     public new Renderer renderer;
     public ColorPicker picker;
 
@@ -26,11 +23,5 @@ public class BGColor : MonoBehaviour
         {
             picker.CurrentColor = Color;
         }
-        }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

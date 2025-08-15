@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class Rebirth : MonoBehaviour
 {
-
     public double RebirthCookies;
     public double RebirthGrandmas;
     public double Rebirths;

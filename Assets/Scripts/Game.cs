@@ -98,10 +98,6 @@ public class Game : MonoBehaviour
             Sound = true;
             Fullscreen = true;
             Particles = true;
-#if !UNITY_WEBGL
-            screenShot.ScreenshotQuality = 1;
-            screenShot.NotificationsInScreenshots = true;
-#endif
             ResetData();
             SavePlayer();
             Reload();
@@ -122,10 +118,6 @@ public class Game : MonoBehaviour
         {
             MinePrice = 1000;
         }
-#if UNITY_WEBGL
-        FullScreenToggleUI.SetActive(false);
-        ScreenshotSettingsBTN.SetActive(false);
-#else
         if (Application.isMobilePlatform == true)
         {
             FullScreenToggleUI.SetActive(false);
@@ -136,7 +128,6 @@ public class Game : MonoBehaviour
             FullScreenToggleUI.SetActive(true);
             ScreenshotSettingsBTN.SetActive(true);
         }
-#endif
         StartCoroutine(bugfix());
         StartCoroutine(AutoSave());
         StartCoroutine(Tick());
@@ -189,7 +180,7 @@ public class Game : MonoBehaviour
         Sound = toggle;
     }
 
-#if !UNITY_WEBGL
+#if !UNITY_ANDROID
     public void FullscreenToggle(bool toggle)
     {
         Fullscreen = toggle;
@@ -449,7 +440,7 @@ public class Game : MonoBehaviour
             sounds[1].volume = 0;
         }
         pp.SetActive(PostProcessing);
-#if !UNITY_WEBGL
+#if !UNITY_ANDROID
         Screen.fullScreen = Fullscreen;
 #endif
         VFX.SetActive(Particles);

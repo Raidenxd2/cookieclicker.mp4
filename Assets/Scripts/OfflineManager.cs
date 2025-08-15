@@ -4,7 +4,6 @@ using TMPro;
 
 public class OfflineManager : MonoBehaviour
 {
-
     public TMP_Text TimeAway;
     public TMP_Text CookiesGained;
 
@@ -37,7 +36,7 @@ public class OfflineManager : MonoBehaviour
 
             Debug.Log("Offline Time: " + offlineTime);
             Debug.Log("CPS: " + game.CPS);
-            Double CookiesGain = offlineTime * game.CPS * rebirth.Rebirths;
+            double CookiesGain = offlineTime * game.CPS * rebirth.Rebirths;
             game.Cookies += CookiesGain;
             CookiesGained.text = CookiesGain.ToString("0 Cookies");
 
@@ -48,7 +47,7 @@ public class OfflineManager : MonoBehaviour
 
     public void SaveTime()
     {
-        OfflineTime = System.DateTime.Now.ToBinary().ToString();
+        OfflineTime = DateTime.Now.ToBinary().ToString();
         offlineProgressCheck = true;
     }
 }

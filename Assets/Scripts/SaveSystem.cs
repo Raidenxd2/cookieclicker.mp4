@@ -1,13 +1,9 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public static class SaveSystem
 {
-    
-
-
     public static void SavePlayer (Game ga, MiniGameFarm fa, Rebirth re, MiniGameMine mi, ScreenShot ss, OfflineManager om)
     {
         BinaryFormatter formatter = new BinaryFormatter();
@@ -39,6 +35,4 @@ public static class SaveSystem
             return null;
         }
     }
-
-
 }

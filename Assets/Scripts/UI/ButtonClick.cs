@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ButtonClick : MonoBehaviour
 {
-
     private Button button;
     private SoundManager soundManager;
     public AudioClip UIClick;

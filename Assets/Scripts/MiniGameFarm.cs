@@ -1,11 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class MiniGameFarm : MonoBehaviour
 {
-
     //UI
     public TMP_Text Farm1_IsGrowingText;
     public TMP_Text Farm2_IsGrowingText;
