@@ -1,10 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NotificationAnimation : MonoBehaviour
 {
-
     public Animation NotificationAnimations;
     public GameObject NotificationObject;
     private RectTransform rectTransform;

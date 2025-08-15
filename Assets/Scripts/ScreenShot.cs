@@ -4,17 +4,13 @@ using TMPro;
 
 public class ScreenShot : MonoBehaviour 
 {
-#if !UNITY_WEBGL
     public string filePath;
     public Notification notification;
-#endif
     public int ScreenshotQuality;
-#if !UNITY_WEBGL
     public TMP_Text ScreenshotQualityText;
-#endif
     public bool NotificationsInScreenshots;
 
-#if !UNITY_WEBGL
+#if !UNITY_ANDROID
     public GameObject Notification;
 
     void Start()
