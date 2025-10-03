@@ -1,11 +1,11 @@
 {
   "dependencies": {
     "com.raiden.buildmanager": {
-      "version": "https://github.com/Raidenxd2/BuildManager.git#v1.1.1",
+      "version": "https://github.com/Raidenxd2/BuildManager.git#v2.1.0",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "17b285c22577aa2c53d4f284beb966b5487fc99c"
+      "hash": "4478f5080e776f4aee7807f05b93cd29a017469f"
     },
     "com.raiden.sharedshaders": {
       "version": "https://github.com/Raidenxd2/SharedShaders.git#1.1.0",
