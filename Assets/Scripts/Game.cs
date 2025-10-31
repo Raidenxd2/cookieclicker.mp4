@@ -53,6 +53,7 @@ public class Game : MonoBehaviour
     public GameObject MiniGames_MineBTN;
     public GameObject FullScreenToggleUI;
     public GameObject ScreenshotSettingsBTN;
+    public GameObject QuitGameBTN;
     public GameObject TutorialScreen;
 
     //other
@@ -118,6 +119,11 @@ public class Game : MonoBehaviour
         {
             MinePrice = 1000;
         }
+#if UNITY_WEBGL
+        FullScreenToggleUI.SetActive(false);
+        ScreenshotSettingsBTN.SetActive(false);
+        QuitGameBTN.SetActive(false);
+#else
         if (Application.isMobilePlatform == true)
         {
             FullScreenToggleUI.SetActive(false);
@@ -128,13 +134,18 @@ public class Game : MonoBehaviour
             FullScreenToggleUI.SetActive(true);
             ScreenshotSettingsBTN.SetActive(true);
         }
+#endif
         StartCoroutine(bugfix());
         StartCoroutine(AutoSave());
         StartCoroutine(Tick());
         offlineManager.LoadOfflineTime();
+
+#if !UNITY_WEBGL
         SetMaxFPS();
+#endif
     }
 
+#if !UNITY_WEBGL
     void SetMaxFPS()
     {
         int refreshRate = (int)Screen.currentResolution.refreshRateRatio.value;
@@ -142,6 +153,7 @@ public class Game : MonoBehaviour
         Application.targetFrameRate = refreshRate;
         Debug.Log("[DEBUG] User Refresh Rate: " + refreshRate);
     }
+#endif
 
     IEnumerator bugfix()
     {
@@ -180,7 +192,7 @@ public class Game : MonoBehaviour
         Sound = toggle;
     }
 
-#if !UNITY_ANDROID
+#if !UNITY_WEBGL
     public void FullscreenToggle(bool toggle)
     {
         Fullscreen = toggle;
@@ -405,7 +417,7 @@ public class Game : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         CookieCounter.text = Cookies.ToString("Cookies: " + "0");
         Shop_AutoClickerPrice.text = AutoClickerPrice.ToString("Auto Clicker (" + "0" + " Cookies)");
@@ -440,7 +452,7 @@ public class Game : MonoBehaviour
             sounds[1].volume = 0;
         }
         pp.SetActive(PostProcessing);
-#if !UNITY_ANDROID
+#if !UNITY_WEBGL
         Screen.fullScreen = Fullscreen;
 #endif
         VFX.SetActive(Particles);

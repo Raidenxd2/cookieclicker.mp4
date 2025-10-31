@@ -10,9 +10,9 @@ public class ScreenShot : MonoBehaviour
     public TMP_Text ScreenshotQualityText;
     public bool NotificationsInScreenshots;
 
-#if !UNITY_ANDROID
     public GameObject Notification;
 
+#if !UNITY_WEBGL
     void Start()
     {
         try
