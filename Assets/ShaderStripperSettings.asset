@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43a43fef584e4a5ba4ce43d552ac5384, type: 3}
+  m_Name: ShaderStripperSettings
+  m_EditorClassIdentifier: com.raiden.shaderstripper.Runtime::ShaderStripperSettings
+  DebugMode: 1
+  ShaderKeywordNames:
+  - _CHROMATIC_ABERRATION
+  - _DISTORTION
+  - _FILM_GRAIN
+  - _FXAA
+  - _FORWARD_PLUS
+  - _RCAS
+  - _TONEMAP_ACES
+  - _TONEMAP_NEUTRAL
+  - _DITHERING
+  - _GAMMA_20
+  - _DEPTH_MSAA_2
+  - _DEPTH_MSAA_4
+  - _DEPTH_MSAA_8
+  - _OUTPUT_DEPTH
+  - DISABLE_TEXTURE2D_X_ARRAY
+  ShadersToStrip:
+  - Hidden/Nature
+  - Hidden/TerrainEngine
+  - Hidden/Video
+  - Hidden/VR
+  - Hidden/Internal-UIR
+  - Hidden/Universal Render Pipeline/SubpixelMorphologicalAntialiasing
+  - Hidden/Universal Render Pipeline/Stop NaN
+  - Hidden/Universal Render Pipeline/TemporalAA
+  - Hidden/Universal Render Pipeline/Edge Adaptive Spatial Upsampling
+  - Hidden/Universal Render Pipeline/CameraMotionVectors
+  - Hidden/Universal Render Pipeline/Debug/DebugReplacement
+  - Hidden/Universal/HDRDebugView
+  - Hidden/Universal Render Pipeline/GaussianDepthOfField
+  - Hidden/Universal Render Pipeline/BokehDepthOfField
+  - Hidden/Universal Render Pipeline/CameraMotionBlur
+  - Hidden/Universal Render Pipeline/PaniniProjection

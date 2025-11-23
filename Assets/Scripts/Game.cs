@@ -24,7 +24,9 @@ public class Game : MonoBehaviour
     public bool HasJoined;
     public bool PostProcessing;
     public bool Music;
+    public float MusicValue;
     public bool Sound;
+    public float SoundValue;
     public bool Fullscreen;
     public bool Particles;
     public double TimePlayed;
@@ -46,6 +48,8 @@ public class Game : MonoBehaviour
     public TMP_Text Stats_Rebirths;
     public TMP_Text Stats_Mines;
     public TMP_Text Stats_TimePlayed;
+    public TMP_Text MusicValueText;
+    public TMP_Text SoundValueText;
 
     //UI
     public GameObject NotEnoughCookiesDialog;
@@ -53,13 +57,10 @@ public class Game : MonoBehaviour
     public GameObject MiniGames_MineBTN;
     public GameObject FullScreenToggleUI;
     public GameObject ScreenshotSettingsBTN;
-    public GameObject QuitGameBTN;
     public GameObject TutorialScreen;
 
     //other
     public GameObject pp;
-    public SoundManager soundManager;
-    public BGColor bGColor;
     public MiniGameFarm miniGameFarm;
     public GameObject CookieVFX;
     public Transform CookieVFXPos;
@@ -73,18 +74,25 @@ public class Game : MonoBehaviour
     public OfflineManager offlineManager;
 
     //Audio
-    public AudioSource[] sounds;
-    public AudioClip[] music;
+    public AudioSource sounds;
     public AudioClip errorSound;
+    
+    private GameObject MusicSource;
+    private AudioSource MusicAudioSource;
 
-    void OnApplicationQuit()
+    private void OnApplicationQuit()
     {
         SavePlayer();
     }
 
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
+        sounds = GameObject.FindGameObjectWithTag("sound").GetComponent<AudioSource>();
+        
+        MusicSource = GameObject.FindGameObjectWithTag("music");
+        MusicAudioSource = MusicSource.GetComponent<AudioSource>();
+        
         if (File.Exists(Application.persistentDataPath + "/cookie"))
         {
             LoadPlayer();
@@ -104,18 +112,15 @@ public class Game : MonoBehaviour
             Reload();
         }
         
-        soundManager = GameObject.FindGameObjectWithTag("sound").GetComponent<SoundManager>();
-        sounds = GameObject.FindGameObjectWithTag("sound").GetComponents<AudioSource>();
-        
-        if (GrandmaPrice <= 125)
+        if (GrandmaPrice < 125)
         {
             GrandmaPrice = 125;
         }
-        if (FarmPrice <= 300)
+        if (FarmPrice < 300)
         {
             FarmPrice = 300;
         }
-        if (MinePrice <= 1000)
+        if (MinePrice < 1000)
         {
             MinePrice = 1000;
         }
@@ -146,7 +151,7 @@ public class Game : MonoBehaviour
     }
 
 #if !UNITY_WEBGL
-    void SetMaxFPS()
+    private void SetMaxFPS()
     {
         int refreshRate = (int)Screen.currentResolution.refreshRateRatio.value;
         refreshRate++;
@@ -155,21 +160,21 @@ public class Game : MonoBehaviour
     }
 #endif
 
-    IEnumerator bugfix()
+    private IEnumerator bugfix()
     {
         MiniGameMine.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         MiniGameMine.SetActive(false);
     }
 
-    IEnumerator AutoSave()
+    private IEnumerator AutoSave()
     {
         yield return new WaitForSeconds(60);
         SavePlayer();
         StartCoroutine(AutoSave());
     }
 
-    IEnumerator Tick()
+    private IEnumerator Tick()
     {
         yield return new WaitForSeconds(1);
         Cookies += CPS * rebirth.Rebirths;
@@ -182,14 +187,16 @@ public class Game : MonoBehaviour
         PostProcessing = toggle;
     }
 
-    public void MusicToggle(bool toggle)
+    public void UpdateMusicValue(float val)
     {
-        Music = toggle;
+        MusicValueText.text = val * 100f + "%";
+        MusicValue = val;
     }
-
-    public void SoundToggle(bool toggle)
+    
+    public void UpdateSoundValue(float val)
     {
-        Sound = toggle;
+        SoundValueText.text = val * 100f + "%";
+        SoundValue = val;
     }
 
 #if !UNITY_WEBGL
@@ -234,7 +241,9 @@ public class Game : MonoBehaviour
         CPS = data.CPS;
         PostProcessing = data.PostProcessing;
         Sound = data.Sound;
+        SoundValue = data.SoundValue;
         Music = data.Music;
+        MusicValue = data.MusicValue;
         Grandmas = data.Grandmas;
         GrandmaPrice = data.GrandmaPrice;
         Farms = data.Farms;
@@ -271,6 +280,9 @@ public class Game : MonoBehaviour
         screenShot.NotificationsInScreenshots = data.NotificationsInScreenshots;
         offlineManager.offlineProgressCheck = data.offlineProgressCheck;
         offlineManager.OfflineTime = data.OfflineTime;
+        
+        UpdateMusicValue(MusicValue);
+        UpdateSoundValue(SoundValue);
     }
 
     public void ResetData()
@@ -435,22 +447,8 @@ public class Game : MonoBehaviour
         Stats_Rebirths.text = rebirth.Rebirths.ToString("Rebirths: " + "0");
         Stats_Mines.text = Mines.ToString("Mines: " + "0");
         Stats_TimePlayed.text = TimePlayed.ToString("Time Played Seconds: " + "0");
-        if (Sound)
-        {
-            sounds[0].volume = 1;
-        }
-        else
-        {
-            sounds[0].volume = 0;
-        }
-        if (Music)
-        {
-            sounds[1].volume = 1;
-        }
-        else
-        {
-            sounds[1].volume = 0;
-        }
+        sounds.volume = SoundValue;
+        MusicAudioSource.volume = MusicValue;
         pp.SetActive(PostProcessing);
 #if !UNITY_WEBGL
         Screen.fullScreen = Fullscreen;
@@ -472,10 +470,6 @@ public class Game : MonoBehaviour
         else
         {
             MiniGames_MineBTN.SetActive(false);
-        }
-        if (!sounds[1].isPlaying)
-        {
-            SoundManager.Instance.RandomMusic(music);
         }
     }
 }

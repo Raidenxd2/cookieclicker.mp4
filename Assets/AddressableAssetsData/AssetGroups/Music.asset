@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Music
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Music
+  m_GUID: 74fe96230280f004fbcd13a3cca54867
+  m_SerializeEntries:
+  - m_GUID: 70b76e2a434ff464ba04256e2c29e73b
+    m_Address: MoveAlong
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ded575e742039b43955af46e7fa5b5c
+    m_Address: Electar
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7e0a1ccf0ce478e4fa1e68f59153091a
+    m_Address: Hypnothis
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f7a032adbfd10746a0a6cf1583a8907
+    m_Address: Pamgaea
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da338a10eba3b0e4ea419cf89ffcae66
+    m_Address: Klockworx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e79139cb7b147cb4e9d73f99c88b890c
+    m_Address: Electrodoodle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: a6dbae7d8097fd244a17809f65da465c, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f7006a8842f1ed94ea8b99b8ec35e105, type: 2}
+    - {fileID: 11400000, guid: e0bb9239ddef10c4280cd481ac08cd1d, type: 2}

@@ -17,7 +17,9 @@ public class PlayerData
     public bool HasJoined;
     public bool PostProcessing;
     public bool Music;
+    public float MusicValue;
     public bool Sound;
+    public float SoundValue;
     public bool Fullscreen;
     public double TimePlayed;
 
@@ -65,7 +67,9 @@ public class PlayerData
         CPS = ga.CPS;
         PostProcessing = ga.PostProcessing;
         Music = ga.Music;
+        MusicValue = ga.MusicValue;
         Sound = ga.Sound;
+        SoundValue = ga.SoundValue;
         Grandmas = ga.Grandmas;
         GrandmaPrice = ga.GrandmaPrice;
         Farms = ga.Farms;
