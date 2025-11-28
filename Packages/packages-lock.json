@@ -8,11 +8,11 @@
       "url": "https://package.openupm.com"
     },
     "com.raiden.buildmanager": {
-      "version": "https://github.com/Raidenxd2/BuildManager.git#v2.4.0",
+      "version": "https://github.com/Raidenxd2/BuildManager.git#v2.5.0",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "2166b47f93d4f5ebebfe85d6d48d98fc39c7a4d4"
+      "hash": "1fdaa3e216a1b222ef146448b8bb51abfb596e4e"
     },
     "com.raiden.shaderstripper": {
       "version": "https://github.com/Raidenxd2/ShaderStripper.git",

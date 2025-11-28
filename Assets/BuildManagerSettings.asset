@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8ea87b8dd4d32641b64da18662f9b08, type: 3}
   m_Name: BuildManagerSettings
   m_EditorClassIdentifier: 
-  BuildCount: 24
+  BuildCount: 26
   Branch: main
   VersionPrefix: 12
   ExeName: Cookieclicker.mp4
   DedicatedServerBuild: 0
-  BuildAddressables: 0
+  BuildAddressables: 1
   RemoveManifestFilesFromAssetBundleBuild: 0
   BuildAssetBundles: 0
   DeleteBundlesBeforeBuilding: 0
@@ -25,6 +25,7 @@ MonoBehaviour:
   RemoveBurstDebugInformation: 1
   IncrementBuildNumber: 1
   AddGitCommitHashToVersion: 1
+  AndroidTextureSubtarget: 0
   PlayerBuildOptions: 8
   AssetBundleBuildOptions: 32768
   CompressionType: 0
