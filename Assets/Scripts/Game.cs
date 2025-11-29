@@ -57,6 +57,7 @@ public class Game : MonoBehaviour
     public GameObject MiniGames_MineBTN;
     public GameObject FullScreenToggleUI;
     public GameObject ScreenshotSettingsBTN;
+    public GameObject QuitGameBTN;
     public GameObject TutorialScreen;
 
     //other
