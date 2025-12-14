@@ -19,7 +19,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "be83a08ce1f6be3444c0a3911bd23e472de853a4"
+      "hash": "38097e62a792a7168bdab078b4591e6ecab90604"
     },
     "com.raiden.sharedshaders": {
       "version": "https://github.com/Raidenxd2/SharedShaders.git#1.1.0",
